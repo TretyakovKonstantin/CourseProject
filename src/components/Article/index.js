@@ -1,10 +1,10 @@
-import React from 'react';
-import marked from 'marked';
-import { connect } from 'react-redux';
-
 import ArticleMeta from './ArticleMeta';
 import CommentContainer from './CommentContainer';
+import React from 'react';
 import agent from '../../agent';
+import { connect } from 'react-redux';
+import marked from 'marked';
+import { ARTICLE_PAGE_LOADED, ARTICLE_PAGE_UNLOADED } from '../../constants/actionTypes';
 
 const mapStateToProps = state => ({
   ...state.article,
@@ -13,16 +13,16 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => ({
   onLoad: payload =>
-    dispatch({ type: 'ARTICLE_PAGE_LOADED', payload }),
+    dispatch({ type: ARTICLE_PAGE_LOADED, payload }),
   onUnload: () =>
-    dispatch({ type: 'ARTICLE_PAGE_UNLOADED' })
+    dispatch({ type: ARTICLE_PAGE_UNLOADED })
 });
 
 class Article extends React.Component {
   componentWillMount() {
     this.props.onLoad(Promise.all([
-      agent.Articles.get(this.props.params.id),
-      agent.Comments.forArticle(this.props.params.id)
+      agent.Articles.get(this.props.match.params.id),
+      agent.Comments.forArticle(this.props.match.params.id)
     ]));
   }
 
@@ -85,7 +85,7 @@ class Article extends React.Component {
             <CommentContainer
               comments={this.props.comments || []}
               errors={this.props.commentErrors}
-              slug={this.props.params.id}
+              slug={this.props.match.params.id}
               currentUser={this.props.currentUser} />
           </div>
         </div>

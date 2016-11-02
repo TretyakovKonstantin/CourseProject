@@ -1,12 +1,12 @@
+import { Link } from 'react-router-dom';
 import React from 'react';
-import { connect } from 'react-redux';
-import { Link } from 'react-router';
-
 import agent from '../../agent';
+import { connect } from 'react-redux';
+import { DELETE_ARTICLE } from '../../constants/actionTypes';
 
 const mapDispatchToProps = dispatch => ({
   onClickDelete: payload =>
-    dispatch({ type: 'DELETE_ARTICLE', payload })
+    dispatch({ type: DELETE_ARTICLE, payload })
 });
 
 const ArticleActions = props => {
