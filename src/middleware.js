@@ -26,7 +26,7 @@ const promiseMiddleware = store => next => action => {
         store.dispatch(action);
       },
       error => {
-        const currentState = store.getState()
+        const currentState = store.getState();
         if (!skipTracking && currentState.viewChangeCounter !== currentView) {
           return
         }
