@@ -9,6 +9,7 @@
   "dependencies": {
     "history": "^4.6.3",
     "marked": "^0.3.6",
+    "primereact": "^1.4.0",
     "prop-types": "^15.5.10",
     "react": "^15.5.0",
     "react-dom": "^15.5.0",
