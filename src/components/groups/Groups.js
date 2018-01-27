@@ -3,7 +3,7 @@ import {connect} from 'react-redux';
 import CreateGroupModal from './CreateGroupModal';
 import GroupPanel from './GroupPanel';
 import {
-  GROUP_PAGE_LOADED, GROUP_PAGE_UNLOADED, ADD_GROUP, REMOVE_GROUP
+  GROUPS_PAGE_LOADED, GROUPS_PAGE_UNLOADED, ADD_GROUP, REMOVE_GROUP, GROUP_PAGE_UPDATED
 } from "../../constants/actionTypes";
 import agent from "../../agent";
 
@@ -13,12 +13,14 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  onLoad: payload => dispatch({type: GROUP_PAGE_LOADED, payload}),
+  onLoad: payload => dispatch({type: GROUPS_PAGE_LOADED, payload}),
   onAddGroup: payload =>
     dispatch({type: ADD_GROUP, payload}),
   onRemoveGroup: payload =>
     dispatch({type: REMOVE_GROUP, payload}),
-  onUnload: () => dispatch({type: GROUP_PAGE_UNLOADED})
+  onUnload: () => dispatch({type: GROUPS_PAGE_UNLOADED}),
+  onGroupUpdate: payload =>
+    dispatch({type: GROUP_PAGE_UPDATED, payload}),
 });
 
 
@@ -29,8 +31,7 @@ class Groups extends React.Component {
 
 
   componentWillMount() {
-    let groups = agent.Groups.getUserGroups(this.props.currentUser);
-    this.setState({selectedGroup: groups[0]});
+    let groups = agent.Groups.userGroups(this.props.currentUser);
     this.props.onLoad([
       groups
     ]);
@@ -69,9 +70,12 @@ class Groups extends React.Component {
           <ul>
             <li className="button--link" onClick={this.onOpenModal}>+</li>
             {this.props.groups.map((group) => {
-              return <li className="button--link" key={group.id} onClick={() => {
-                this.setState({selectedGroup: group});
-              }}>{group.name}</li>
+              return (
+
+                <li className="button--link" key={group.id} onClick={() => {
+                  this.props.onGroupUpdate([group, agent.News.forGroup(group.id)])
+                }}>{group.name}</li>
+              )
             })}
           </ul>
         </div>
@@ -82,7 +86,7 @@ class Groups extends React.Component {
           onCloseModal={this.onCloseModal}
           groups={this.props.groups}
         />
-        {this.state.selectedGroup ? <GroupPanel group={this.state.selectedGroup}/> : <h2>У вас нет групп</h2>}
+        <GroupPanel group={this.state.selectedGroup}/>
       </div>
     );
   }

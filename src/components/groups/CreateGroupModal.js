@@ -21,6 +21,7 @@ class CreateGroupModal extends React.Component {
         isOpen={this.props.selectedOption}
         contentLabel="Create group"
         onRequestClose={this.props.onCloseModal}
+        ariaHideApp={false}
       >
         <p>Enter Group's name</p>
         <input type="text" list="groups-list" onChange={(e) => {

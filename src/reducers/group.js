@@ -1,15 +1,24 @@
 import {
-  ADD_GROUP, GROUP_PAGE_LOADED, GROUP_PAGE_UNLOADED, REMOVE_GROUP
+  ADD_GROUP, GROUPS_PAGE_LOADED, GROUPS_PAGE_UNLOADED, REMOVE_GROUP, GROUP_PAGE_UNLOADED,
+  GROUP_PAGE_UPDATED
 } from '../constants/actionTypes';
 
 export default (state = {}, action) => {
   switch (action.type) {
-    case GROUP_PAGE_LOADED:
-      console.log('>>>>>>>>>>>>>>>>>>>>>>>>', action.payload[0]);
+    case GROUP_PAGE_UPDATED:
       return {
-        groups: action.payload[0]
+        ...state,
+        group: action.payload[0],
+        news: action.payload[1]
       };
     case GROUP_PAGE_UNLOADED:
+      return {};
+    case GROUPS_PAGE_LOADED:
+      return {
+        ...state,
+        groups: action.payload[0],
+      };
+    case GROUPS_PAGE_UNLOADED:
       return {};
     case ADD_GROUP:
       return {

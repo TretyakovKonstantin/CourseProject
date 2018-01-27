@@ -91,7 +91,7 @@ const Profile = {
 //     requests.post('/groups', {groups}),
 //   find: partialName =>
 //     requests.get('/groups', partialName),
-//   getUserGroups: user =>
+//   userGroups: user =>
 //     requests.post('/groups', user),
 // };
 
@@ -103,12 +103,67 @@ let groupsArray = [
 ];
 
 const Groups = {
-  create: group => {
-    groupsArray.push(group);
-    return {group: groupsArray[groupsArray.length - 1]}
+    create: group => {
+      groupsArray.push(group);
+      return {group: groupsArray[groupsArray.length - 1]}
+    },
+    get: id => (groupsArray.find(group => group.id === id)),
+    userGroups: user => groupsArray,
+    find:
+      partialName => groupsArray.filter(group => group.name.includes(partialName))
+  }
+;
+
+let newsArray = [
+  {
+    id: '1',
+    groupId: '1',
+    header: "Something big happened",
+    info: 'Francis Ford Coppolas legendary continuation and sequel to his landmark 1972 film, The_Godfather parallels ' +
+    'the young Vito Corleone\'s rise with his son Michael\'s spiritual fall, deepening The_Godfathers depiction of the' +
+    ' dark side of the American dream. In the early 1900s, the child Vito flees his Sicilian village for America after ' +
+    'the local Mafia kills his family. Vito struggles to make a living, legally or illegally, for his wife and growing ' +
+    'brood in Little Italy, killing the local Black Hand Fanucci after he demands his customary cut of the tyro\'s business.' +
+    ' With Fanucci gone, Vito\'s communal stature grows.'
   },
-  getUserGroups: user =>  groupsArray,
-  find: partialName => groupsArray.filter(group => group.name.includes(partialName))
+  {
+    id: '2',
+    groupId: '1',
+    header: 'GodFather',
+    info: 'Francis Ford Coppolas legendary continuation and sequel to his landmark 1972 film, The_Godfather parallels' +
+    ' the young Vito Corleone\'s rise with his son Michael\'s spiritual fall, deepening The_Godfathers depiction of the' +
+    ' dark side of the American dream. In the early 1900s, the child Vito flees his Sicilian village for America after' +
+    ' the local Mafia kills his family. Vito struggles to make a living, legally or illegally, for his wife and growing ' +
+    'brood in Little Italy, killing the local Black Hand Fanucci after he demands his customary cut of the tyro\'s business.' +
+    ' With Fanucci gone, Vito\'s communal stature grows.'
+  }, {
+    id: '3',
+    groupId: '1',
+    header: 'GodFather 2',
+    info: 'After a break of more than 15 years, director Francis Ford Coppola and writer Mario Puzo returned to the ' +
+    'well for this third and final story of the fictional Corleone crime family. Two decades have passed, and crime ' +
+    'kingpin Michael Corleone, now divorced from his wife Kay has nearly succeeded in keeping his promise that his ' +
+    'family would one day be completely legitimate.'
+  },
+  {
+    id: '4',
+    groupId: '2',
+    header: 'Hello World',
+    info: 'I was drunk, I was me, I was happy, I was drunk, I was me, I was happy, I was drunk, I was me, I was happy, ' +
+    'I was drunk, I was me, I was happy, I was drunk, I was me, I was happy, I was drunk, I was me, I was happy, ' +
+    'I was drunk, I was me, I was happy, I was drunk, I was me, I was happy, I was drunk, I was me, I was happy, ' +
+    'I was drunk, I was me, I was happy, I was drunk, I was me, I was happy, I was drunk, I was me, I was happy, '
+  }
+];
+
+const News = {
+  create: news => {
+    newsArray.push(news);
+    return {news: newsArray[newsArray.length - 1]}
+  },
+  forGroup: id => {
+    return newsArray.filter(news => news.groupId === id)
+  }
 };
 
 export default {
@@ -118,6 +173,7 @@ export default {
   Profile,
   Tags,
   Groups,
+  News,
   setToken: _token => {
     token = _token;
   }
