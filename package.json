@@ -12,6 +12,7 @@
     "fullcalendar": "^3.8.0",
     "history": "^4.6.3",
     "marked": "^0.3.6",
+    "node-sass-chokidar": "0.0.3",
     "primereact": "^1.4.0",
     "prop-types": "^15.5.10",
     "react": "^15.5.0",
@@ -30,8 +31,12 @@
     "uuid": "^3.2.1"
   },
   "scripts": {
-    "start": "cross-env PORT=4100 react-scripts start",
-    "build": "react-scripts build",
+    "start-js": "cross-env PORT=4101 react-scripts start",
+    "start": "npm-run-all -p watch-css start-js",
+    "build-js": "react-scripts build",
+    "build": "npm-run-all build-css build-js",
+    "build-css": "node-sass-chokidar --include-path ./src --include-path ./node_modules src/ -o src/",
+    "watch-css": "npm run build-css && node-sass-chokidar --include-path ./src --include-path ./node_modules src/ -o src/ --watch --recursive",
     "test": "cross-env PORT=4100 react-scripts test --env=jsdom",
     "eject": "react-scripts eject"
   }

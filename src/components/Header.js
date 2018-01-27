@@ -4,22 +4,16 @@ import { Link } from 'react-router-dom';
 const LoggedOutView = props => {
   if (!props.currentUser) {
     return (
-      <ul className="nav navbar-nav pull-xs-right">
+      <ul className="header__content">
 
-        <li className="nav-item">
-          <Link to="/" className="nav-link">
-            Home
-          </Link>
-        </li>
-
-        <li className="nav-item">
-          <Link to="/login" className="nav-link">
+        <li className="header__title">
+          <Link to="/login">
             Sign in
           </Link>
         </li>
 
-        <li className="nav-item">
-          <Link to="/register" className="nav-link">
+        <li className="header__title">
+          <Link to="/register">
             Sign up
           </Link>
         </li>
@@ -33,36 +27,36 @@ const LoggedOutView = props => {
 const LoggedInView = props => {
   if (props.currentUser) {
     return (
-      <ul className="nav navbar-nav pull-xs-right">
+      <ul className="header__content">
 
-        <li className="nav-item">
-          <Link to="/" className="nav-link">
+        <li className="header__title">
+          <Link to="/">
             Home
           </Link>
         </li>
 
-        <li className="nav-item">
-          <Link to="/groups" className="nav-link">
+        <li className="header__title">
+          <Link to="/groups">
             Groups
           </Link>
         </li>
 
-        <li className="nav-item">
-          <Link to="/editor" className="nav-link">
+        <li className="header__title">
+          <Link to="/editor" >
             <i className="ion-compose"/>&nbsp;New Post
           </Link>
         </li>
 
-        <li className="nav-item">
-          <Link to="/settings" className="nav-link">
+        <li className="header__title">
+          <Link to="/settings">
             <i className="ion-gear-a"/>&nbsp;Settings
           </Link>
         </li>
 
-        <li className="nav-item">
+        <li className="header__title">
           <Link
             to={`/@${props.currentUser.username}`}
-            className="nav-link">
+            className="header__title">
             <img src={props.currentUser.image} className="user-pic" alt={props.currentUser.username} />
             {props.currentUser.username}
           </Link>
@@ -78,13 +72,8 @@ const LoggedInView = props => {
 class Header extends React.Component {
   render() {
     return (
-      <nav className="navbar navbar-light">
+      <nav className="header">
         <div className="container">
-
-          <Link to="/" className="navbar-brand">
-            {this.props.appName.toLowerCase()}
-          </Link>
-
           <LoggedOutView currentUser={this.props.currentUser} />
 
           <LoggedInView currentUser={this.props.currentUser} />

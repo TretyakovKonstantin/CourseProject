@@ -9,6 +9,7 @@ import { ConnectedRouter } from 'react-router-redux';
 import 'primereact/resources/primereact.min.css';
 import 'primereact/resources/themes/omega/theme.css';
 import 'font-awesome/css/font-awesome.css';
+import './styles/styles.css';
 
 import App from './components/App';
 
