@@ -54,7 +54,7 @@ class App extends React.Component {
   render() {
     if (this.props.appLoaded) {
       return (
-        <div className="regular-page">
+        <div>
           <Header
             appName={this.props.appName}
             currentUser={this.props.currentUser}/>

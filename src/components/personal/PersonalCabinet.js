@@ -4,6 +4,7 @@ import Timetable from './Timetable'
 import PersonalNotes from './PersonalNotes'
 import {Switch, Route, Link} from 'react-router-dom'
 import 'primereact/components/schedule/Schedule.css'
+import Profile from "../Profile";
 
 const PersonalCabinet = () => {
   return (
@@ -25,6 +26,7 @@ const PersonalCabinet = () => {
 
 
       <Switch>
+        <Route path="/personal/@:username" component={Profile}/>
         <Route path={`/personal/info`} component={PersonalInformation}/>
         <Route path={`/personal/timetable`} component={Timetable}/>
         <Route path={`/personal/notes`} component={PersonalNotes}/>

@@ -112,12 +112,11 @@ class SettingsForm extends React.Component {
               onChange={this.updateState('password')}/>
           </fieldset>
 
-          <button
-            className="btn btn-lg btn-primary pull-xs-right"
+          <Button
             type="submit"
             disabled={this.state.inProgress}>
             Update Settings
-          </button>
+          </Button>
 
         </fieldset>
       </form>
@@ -155,10 +154,11 @@ class Settings extends React.Component {
 
               <hr/>
 
-              <Button
+              <button
+                className="button--link"
                 onClick={this.props.onClickLogout}>
                 Or click here to logout.
-              </Button>
+              </button>
 
             </div>
           </div>

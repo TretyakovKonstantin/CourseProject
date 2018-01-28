@@ -16,6 +16,10 @@ import {store} from '../store';
 import {push} from 'react-router-redux';
 import Groups from '../components/groups/Groups'
 import PersonalCabinet from '../components/personal/PersonalCabinet'
+import NotFoundPage from '../components/NotFoundPage';
+import PrivateRoute from '../components/routers/PrivateRoute';
+import PublicRoute from '../components/routers/PublicRoute';
+import {NonAuthPage} from "./NonAuthPage";
 
 const mapStateToProps = state => {
   return {
@@ -59,20 +63,22 @@ class App extends React.Component {
             appName={this.props.appName}
             currentUser={this.props.currentUser}/>
           <Switch>
-            <Route exact path="/" component={Home}/>
-            <Route path="/login" component={Login}/>
-            <Route path="/register" component={Register}/>
-            <Route path="/editor/:slug" component={Editor}/>
-            <Route path="/editor" component={Editor}/>
-            <Route path="/article/:id" component={Article}/>
-            <Route path="/settings" component={Settings}/>
-            <Route path="/@:username/favorites" component={ProfileFavorites}/>
-            <Route path="/@:username" component={Profile}/>
-            <Route path="/groups" component={Groups}/>
-            <Route path="/personal" component={PersonalCabinet}/>
+            <PublicRoute exact path="/auth" component={NonAuthPage}/>
+            <PublicRoute path="/login" component={Login}/>
+            <PublicRoute path="/register" component={Register}/>
+            <PrivateRoute exact path="/" component={Home}/>
+            <PrivateRoute path="/editor/:slug" component={Editor}/>
+            <PrivateRoute path="/editor" component={Editor}/>
+            <PrivateRoute path="/article/:id" component={Article}/>
+            <PrivateRoute path="/settings" component={Settings}/>
+            <PrivateRoute path="/@:username/favorites" component={ProfileFavorites}/>
+            <PrivateRoute path="/@:username" component={Profile}/>
+            <PrivateRoute path="/groups" component={Groups}/>
+            <PrivateRoute path="/personal" component={PersonalCabinet}/>
+            <PublicRoute component={NotFoundPage}/>
           </Switch>
         </div>
-    );
+      );
     }
     return (
       <div>
@@ -81,11 +87,11 @@ class App extends React.Component {
           currentUser={this.props.currentUser}/>
       </div>
     );
-    }
-    }
+  }
+}
 
-    // App.contextTypes = {
+// App.contextTypes = {
 //   router: PropTypes.object.isRequired
 // };
 
-    export default connect(mapStateToProps, mapDispatchToProps)(App);
+export default connect(mapStateToProps, mapDispatchToProps)(App);

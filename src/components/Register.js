@@ -3,6 +3,7 @@ import ListErrors from './ListErrors';
 import React from 'react';
 import agent from '../agent';
 import { connect } from 'react-redux';
+import {Button} from 'primereact/components/button/Button'
 import {
   UPDATE_FIELD_AUTH,
   REGISTER,
@@ -48,12 +49,12 @@ class Register extends React.Component {
     const username = this.props.username;
 
     return (
-      <div className="auth-page">
-        <div className="container page">
+      <div className="auth-layout">
+        <div >
           <div className="row">
 
-            <div className="col-md-6 offset-md-3 col-xs-12">
-              <h1 className="text-xs-center">Sign Up</h1>
+            <div >
+              <h1>Sign Up</h1>
               <p className="text-xs-center">
                 <Link to="/login">
                   Have an account?
@@ -62,30 +63,30 @@ class Register extends React.Component {
 
               <ListErrors errors={this.props.errors} />
 
-              <form onSubmit={this.submitForm(username, email, password)}>
+              <form className="input-group" onSubmit={this.submitForm(username, email, password)}>
                 <fieldset>
 
-                  <fieldset className="form-group">
+                  <fieldset className="input-group__item">
                     <input
-                      className="form-control form-control-lg"
+                      className="text-input"
                       type="text"
                       placeholder="Username"
                       value={this.props.username}
                       onChange={this.changeUsername} />
                   </fieldset>
 
-                  <fieldset className="form-group">
+                  <fieldset className="input-group__item">
                     <input
-                      className="form-control form-control-lg"
+                      className="text-input"
                       type="email"
                       placeholder="Email"
                       value={this.props.email}
                       onChange={this.changeEmail} />
                   </fieldset>
 
-                  <fieldset className="form-group">
+                  <fieldset className="input-group__item">
                     <input
-                      className="form-control form-control-lg"
+                      className="text-input"
                       type="password"
                       placeholder="Password"
                       value={this.props.password}
@@ -93,7 +94,7 @@ class Register extends React.Component {
                   </fieldset>
 
                   <button
-                    className="btn btn-lg btn-primary pull-xs-right"
+                    className="button"
                     type="submit"
                     disabled={this.props.inProgress}>
                     Sign up

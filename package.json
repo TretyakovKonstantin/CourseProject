@@ -34,7 +34,7 @@
     "uuid": "^3.2.1"
   },
   "scripts": {
-    "start-js": "cross-env PORT=3001 react-scripts start",
+    "start-js": "cross-env PORT=4111 react-scripts start",
     "start": "npm-run-all -p watch-css start-js",
     "build-js": "react-scripts build",
     "build": "npm-run-all build-css build-js",

@@ -6,9 +6,11 @@
     flex-direction: row;
     margin-bottom: $l-size;
   }
+  border: none;
 }
 
 .input-group__item {
+  border: none;
   margin-bottom: $s-size;
   @media (min-width: $desktop-breakpoint) {
     margin: 0 $s-size 0 0;

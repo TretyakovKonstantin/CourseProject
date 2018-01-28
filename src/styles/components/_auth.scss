@@ -1,14 +1,15 @@
-.box-layout {
+.auth-layout {
   align-items: center;
-  background: url('/public/images/train.jpg');
+  background: url('/images/train.jpg');
   background-size: cover;
   display: flex;
   height: 100vh;
   justify-content: center;
   width: 100vw;
+  color: $dark-blue;
 }
 
-.box-layout__box {
+.auth-layout__box {
   background: fade-out(white, .15);
   border-radius: 3px;
   padding: $l-size $m-size;
@@ -16,7 +17,7 @@
   width: 25rem;
 }
 
-.box-layout__title {
+.auth-layout__title {
   margin: 0 0 $m-size 0;
   line-height: 1;
 }

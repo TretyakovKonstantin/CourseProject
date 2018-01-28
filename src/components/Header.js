@@ -1,28 +1,6 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import {Link} from 'react-router-dom';
 
-const LoggedOutView = props => {
-  if (!props.currentUser) {
-    return (
-      <ul className="header__content">
-
-        <li className="header__title">
-          <Link to="/login">
-            Sign in
-          </Link>
-        </li>
-
-        <li className="header__title">
-          <Link to="/register">
-            Sign up
-          </Link>
-        </li>
-
-      </ul>
-    );
-  }
-  return null;
-};
 
 const LoggedInView = props => {
   if (props.currentUser) {
@@ -42,20 +20,20 @@ const LoggedInView = props => {
         </li>
 
         <li className="header__title">
-          <Link to="/personal">
-            <i className="ion-person"/>&nbsp;Личный Кабинет
+          <Link to={`/personal/@${props.currentUser.username}`}>
+            <i className="ion-person"/>&nbsp;Личный кабинет
           </Link>
         </li>
 
         <li className="header__title">
-          <Link to="/editor" >
+          <Link to="/editor">
             <i className="ion-compose"/>&nbsp;New Post
           </Link>
         </li>
 
         <li className="header__title">
           <Link to="/settings">
-            <i className="ion-gear-a"/>&nbsp;Settings
+            <i className="ion-gear-a"/>&nbsp;Настройки
           </Link>
         </li>
 
@@ -63,7 +41,7 @@ const LoggedInView = props => {
           <Link
             to={`/@${props.currentUser.username}`}
             className="header__title">
-            <img src={props.currentUser.image} className="user-pic" alt={props.currentUser.username} />
+            <img src={props.currentUser.image} className="user-pic"/>
             {props.currentUser.username}
           </Link>
         </li>
@@ -77,14 +55,13 @@ const LoggedInView = props => {
 
 class Header extends React.Component {
   render() {
+    if (!this.props.currentUser) {
+      return null
+    }
     return (
-      <nav className="header">
-        <div>
-          <LoggedOutView currentUser={this.props.currentUser} />
-
-          <LoggedInView currentUser={this.props.currentUser} />
-        </div>
-      </nav>
+    <nav className="header">
+      <LoggedInView currentUser={this.props.currentUser}/>
+    </nav>
     );
   }
 }
