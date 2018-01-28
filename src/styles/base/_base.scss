@@ -7,7 +7,7 @@ html {
 }
 
 body {
-  color: $dark-grey;
+  color: white;
   font-family: Helvetica, Arial, sans-serif;
   font-size: $font-size-large;
   line-height: 1.6;
@@ -19,6 +19,15 @@ button {
 
 button:disabled {
   cursor: default;
+}
+
+a {
+  color: white;
+  text-decoration: none
+}
+
+ul {
+  list-style-type: none;
 }
 
 .is-active {

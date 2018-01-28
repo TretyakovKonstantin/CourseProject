@@ -10,9 +10,12 @@
     "classnames": "^2.2.5",
     "font-awesome": "^4.7.0",
     "fullcalendar": "^3.8.0",
+    "fullcalendar-reactwrapper": "^1.0.7",
     "history": "^4.6.3",
     "marked": "^0.3.6",
     "node-sass-chokidar": "0.0.3",
+    "normalize.css": "^7.0.0",
+    "npm-run-all": "^4.1.2",
     "primereact": "^1.4.0",
     "prop-types": "^15.5.10",
     "react": "^15.5.0",
@@ -31,7 +34,7 @@
     "uuid": "^3.2.1"
   },
   "scripts": {
-    "start-js": "cross-env PORT=4101 react-scripts start",
+    "start-js": "cross-env PORT=3001 react-scripts start",
     "start": "npm-run-all -p watch-css start-js",
     "build-js": "react-scripts build",
     "build": "npm-run-all build-css build-js",

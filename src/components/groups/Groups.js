@@ -64,7 +64,7 @@ class Groups extends React.Component {
     }
 
     return (
-      <div className="usual-page">
+      <div className="regular-page">
         <div className="tabs-left">
           My groups
           <ul>

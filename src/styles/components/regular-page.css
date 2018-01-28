@@ -1,0 +1,15 @@
+.regular-page {
+  /* Create the parallax scrolling effect */
+  background: url("/images/castle.jpg") no-repeat fixed center;
+  background-size: cover;
+  align-items: center;
+  height: 100vh;
+  justify-content: center;
+  width: 100vw;
+  padding: 0; }
+
+.tabs-left li {
+  list-style-type: none;
+  cursor: pointer;
+  font-size: 2rem;
+  margin: 1.2rem; }

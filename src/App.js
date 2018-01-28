@@ -1,21 +1,21 @@
-import agent from '../agent';
+import agent from './agent';
 import Header from './Header';
 import React from 'react';
 import {connect} from 'react-redux';
-import {APP_LOAD, REDIRECT} from '../constants/actionTypes';
+import {APP_LOAD, REDIRECT} from './constants/actionTypes';
 import {Route, Switch} from 'react-router-dom';
-import Article from '../components/Article';
-import Editor from '../components/Editor';
-import Home from '../components/Home';
-import Login from '../components/Login';
-import Profile from '../components/Profile';
-import ProfileFavorites from '../components/ProfileFavorites';
-import Register from '../components/Register';
-import Settings from '../components/Settings';
-import {store} from '../store';
+import Article from './components/Article';
+import Editor from './components/Editor';
+import Home from './components/Home';
+import Login from './components/Login';
+import Profile from './components/Profile';
+import ProfileFavorites from './components/ProfileFavorites';
+import Register from './components/Register';
+import Settings from './components/Settings';
+import {store} from './store';
 import {push} from 'react-router-redux';
-import Groups from '../components/groups/Groups'
-import PersonalCabinet from '../components/personal/PersonalCabinet'
+import Groups from './components/groups/Groups';
+import PersonalCabinet from './components/personal/PersonalCabinet';
 
 const mapStateToProps = state => {
   return {
@@ -54,7 +54,7 @@ class App extends React.Component {
   render() {
     if (this.props.appLoaded) {
       return (
-        <div>
+        <div className="regular-page">
           <Header
             appName={this.props.appName}
             currentUser={this.props.currentUser}/>
@@ -72,7 +72,7 @@ class App extends React.Component {
             <Route path="/personal" component={PersonalCabinet}/>
           </Switch>
         </div>
-    );
+      );
     }
     return (
       <div>
@@ -81,11 +81,11 @@ class App extends React.Component {
           currentUser={this.props.currentUser}/>
       </div>
     );
-    }
-    }
+  }
+}
 
-    // App.contextTypes = {
+// App.contextTypes = {
 //   router: PropTypes.object.isRequired
 // };
 
-    export default connect(mapStateToProps, mapDispatchToProps)(App);
+export default connect(mapStateToProps, mapDispatchToProps)(App);
