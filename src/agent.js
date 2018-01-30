@@ -95,7 +95,7 @@ const Profile = {
 //     requests.post('/groups', user),
 // };
 
-let groupsArray = [
+let groups = [
   {id: '1', name: 'My First Group'},
   {id: '2', name: 'Dumbledore\'s Army'},
   {id: '3', name: 'Death Devourers'},
@@ -104,17 +104,17 @@ let groupsArray = [
 
 const Groups = {
     create: group => {
-      groupsArray.push(group);
-      return {group: groupsArray[groupsArray.length - 1]}
+      groups.push(group);
+      return {group: groups[groups.length - 1]}
     },
-    get: id => (groupsArray.find(group => group.id === id)),
-    userGroups: user => groupsArray,
+    get: id => (groups.find(group => group.id === id)),
+    userGroups: user => groups,
     find:
-      partialName => groupsArray.filter(group => group.name.includes(partialName))
+      partialName => groups.filter(group => group.name.includes(partialName))
   }
 ;
 
-let newsArray = [
+let news = [
   {
     id: '1',
     groupId: '1',
@@ -158,12 +158,44 @@ let newsArray = [
 
 const News = {
   create: news => {
-    newsArray.push(news);
-    return {news: newsArray[newsArray.length - 1]}
+    news.push(news);
+    return {news: news[news.length - 1]}
   },
   forGroup: id => {
-    return newsArray.filter(news => news.groupId === id)
+    return news.filter(news => news.groupId === id)
   }
+};
+
+let events = [
+  {
+    "id": 1,
+    "title": "All Day Event",
+    "start": "2018-02-02"
+  },
+  {
+    "id": 2,
+    "title": "Long Event",
+    "start": "2018-02-07",
+    "end": "2018-02-10"
+  },
+  {
+    "id": 3,
+    "title": "Repeating Event",
+    "start": "2018-02-09T16:00:00"
+  },
+  {
+    "id": 4,
+    "title": "Repeating Event",
+    "start": "2018-02-16T16:00:00"
+  }
+];
+
+const Events = {
+  create: event => {
+    events.push(event);
+    return events[events.length - 1];
+  },
+  forUser: user => events
 };
 
 export default {
@@ -174,6 +206,7 @@ export default {
   Tags,
   Groups,
   News,
+  Events,
   setToken: _token => {
     token = _token;
   }

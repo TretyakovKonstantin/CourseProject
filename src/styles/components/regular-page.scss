@@ -1,23 +1,26 @@
-@import '../base/settings';
-
-
 .regular-page {
-  /* Create the parallax scrolling effect */
   background: url('/images/castle.jpg') no-repeat fixed center;
   background-size: cover;
   align-items: center;
   height: 100vh;
-  justify-content: center;
+  justify-content: space-between;
   width: 100vw;
   padding:0;
 }
 
-.tabs-left {
+.items-list {
+  display: flex;
+  flex-direction: column;
 }
 
-.tabs-left li {
-  list-style-type: none;
-  cursor: pointer;
-  font-size: 2rem;
-  margin: $s-size;
+.right-view {
+
 }
+
+//TODO - pin this view to the right
+
+//.ui-datascroller-content {
+//  background: transparent !important;
+//  border: none;
+//  width: 60vw;
+//}

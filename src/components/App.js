@@ -59,9 +59,6 @@ class App extends React.Component {
     if (this.props.appLoaded) {
       return (
         <div>
-          <Header
-            appName={this.props.appName}
-            currentUser={this.props.currentUser}/>
           <Switch>
             <PublicRoute exact path="/auth" component={NonAuthPage}/>
             <PublicRoute path="/login" component={Login}/>
@@ -80,18 +77,15 @@ class App extends React.Component {
         </div>
       );
     }
-    return (
-      <div>
-        <Header
-          appName={this.props.appName}
-          currentUser={this.props.currentUser}/>
-      </div>
-    );
+    return null;
+    // return (
+    //   <div>
+    //     <Header
+    //       appName={this.props.appName}
+    //       currentUser={this.props.currentUser}/>
+    //   </div>
+    // );
   }
 }
-
-// App.contextTypes = {
-//   router: PropTypes.object.isRequired
-// };
 
 export default connect(mapStateToProps, mapDispatchToProps)(App);

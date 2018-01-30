@@ -155,7 +155,7 @@ class Settings extends React.Component {
               <hr/>
 
               <button
-                className="button--link"
+                className="button button--link"
                 onClick={this.props.onClickLogout}>
                 Or click here to logout.
               </button>

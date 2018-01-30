@@ -29,7 +29,6 @@ class Groups extends React.Component {
     selectedOption: false
   };
 
-
   componentWillMount() {
     let groups = agent.Groups.userGroups(this.props.currentUser);
     this.props.onLoad([
@@ -65,16 +64,18 @@ class Groups extends React.Component {
 
     return (
       <div className="regular-page">
-        <div className="tabs-left">
-          My groups
+        <div className="items-list">
           <ul>
-            <li className="button--link" onClick={this.onOpenModal}>+</li>
+            <li>
+              <button className="button button--link" onClick={this.onOpenModal}>+</button>
+            </li>
             {this.props.groups.map((group) => {
               return (
-
-                <li className="button--link" key={group.id} onClick={() => {
-                  this.props.onGroupUpdate([group, agent.News.forGroup(group.id)])
-                }}>{group.name}</li>
+                <li>
+                  <button className="button button--link" key={group.id} onClick={() => {
+                    this.props.onGroupUpdate([group, agent.News.forGroup(group.id)])
+                  }}>{group.name}</button>
+                </li>
               )
             })}
           </ul>
@@ -86,7 +87,9 @@ class Groups extends React.Component {
           onCloseModal={this.onCloseModal}
           groups={this.props.groups}
         />
-        <GroupPanel group={this.state.selectedGroup}/>
+        <div className="right-view">
+          <GroupPanel group={this.state.selectedGroup}/>
+        </div>
       </div>
     );
   }

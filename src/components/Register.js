@@ -3,7 +3,6 @@ import ListErrors from './ListErrors';
 import React from 'react';
 import agent from '../agent';
 import { connect } from 'react-redux';
-import {Button} from 'primereact/components/button/Button'
 import {
   UPDATE_FIELD_AUTH,
   REGISTER,

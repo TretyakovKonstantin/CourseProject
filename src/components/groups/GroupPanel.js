@@ -1,6 +1,6 @@
 import React from 'react';
 import {connect} from 'react-redux'
-import {DataScroller} from 'primereact/components/datascroller/DataScroller'
+import {DataList} from 'primereact/components/datalist/DataList'
 import NewsTemplate from './NewsTemplate'
 
 const mapStateToProps = state => {
@@ -13,17 +13,18 @@ const mapStateToProps = state => {
 
 
 class GroupPanel extends React.Component {
+
   render() {
     if (!this.props.news || !this.props.group) {
       return null
     }
     return (
       <div>
-        <h1>Hello, Group</h1>
-        <h2>{this.props.group.name}</h2>
-        {this.props.news ?
-          <DataScroller value={this.props.news} itemTemplate={NewsTemplate} lazy={true} rows={10}/> :
-          <h3>В этой группе нет новостей</h3>}
+        <h1>{this.props.group.name}</h1>
+        {
+          this.props.news.length !== 0 ?
+            <DataList value={this.props.news} itemTemplate={NewsTemplate} lazy={true} rows={20}/> :
+            <h3>В этой группе нет новостей</h3>}
       </div>
     )
   }

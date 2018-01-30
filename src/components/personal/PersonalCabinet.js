@@ -9,17 +9,18 @@ import Profile from "../Profile";
 const PersonalCabinet = () => {
   return (
     <div className="regular-page">
-      <div className="tabs-left">
+      <div className="items-list">
 
         <ul>
           <li>
-            <Link to={`/personal/info`}>Личная Информация</Link>
+            <Link to={`/personal/info`}>
+              <button className="button button--link"><i className="ion-locked"/> Личная Информация</button></Link>
           </li>
           <li>
-            <Link to={`/personal/timetable`}>Расписание</Link>
+            <Link to={`/personal/timetable`}><button className="button button--link"><i className="ion-ios-clock"/> Расписание</button></Link>
           </li>
           <li>
-            <Link to={`/personal/notes`}>Личные заметки</Link>
+            <Link to={`/personal/notes`}><button className="button button--link"><i className="ion-clipboard"/> Личные заметки</button></Link>
           </li>
         </ul>
       </div>

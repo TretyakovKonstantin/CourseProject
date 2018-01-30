@@ -1,11 +1,15 @@
 import React, {Component} from 'react';
 import {Schedule} from 'primereact/components/schedule/Schedule';
 
-const mapStateToProps = ()=>{
+const mapStateToProps = () => {
 
 };
 
 export default class Timetable extends Component {
+  onDayClick = (date) => {
+
+  };
+
   render() {
     this.header = {
       left: 'prev,next today',

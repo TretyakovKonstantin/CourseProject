@@ -1,18 +1,19 @@
 .header {
   background: $dark-blue;
+  font-size: $font-size-small;
 }
 
 .header__content {
   align-items: center;
   display: flex;
   justify-content: space-between;
-  padding: $s-size $xl-size;
+  padding: 0 0;
 }
 
 .header__title {
   color: white;
   text-decoration: none;
-  h1 {
+  h3 {
     margin: 0;
   }
 }
