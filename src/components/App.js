@@ -1,9 +1,8 @@
 import agent from '../agent';
-import Header from './Header';
 import React from 'react';
 import {connect} from 'react-redux';
 import {APP_LOAD, REDIRECT} from '../constants/actionTypes';
-import {Route, Switch} from 'react-router-dom';
+import {Switch} from 'react-router-dom';
 import Article from '../components/Article';
 import Editor from '../components/Editor';
 import Home from '../components/Home';
@@ -78,13 +77,6 @@ class App extends React.Component {
       );
     }
     return null;
-    // return (
-    //   <div>
-    //     <Header
-    //       appName={this.props.appName}
-    //       currentUser={this.props.currentUser}/>
-    //   </div>
-    // );
   }
 }
 

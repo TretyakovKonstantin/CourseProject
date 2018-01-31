@@ -8,7 +8,7 @@ const mapStateToProps = state => ({
   groups: state.group.groups
 });
 
-class CreateGroupModal extends React.Component {
+class EventModal extends React.Component {
   state = {
     groupName: '',
     error: '',
@@ -46,10 +46,10 @@ class CreateGroupModal extends React.Component {
           this.props.onCloseModal()
         }}>Create
         </button>
-        {this.state.error && <p className="error-message">{this.state.error}</p>}
+        {this.state.error && <p className="form_error">{this.state.error}</p>}
       </Modal>
     )
   }
 }
 
-export default connect(mapStateToProps)(CreateGroupModal);
+export default connect(mapStateToProps)(EventModal);

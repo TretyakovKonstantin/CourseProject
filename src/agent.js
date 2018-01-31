@@ -109,6 +109,11 @@ const Groups = {
     },
     get: id => (groups.find(group => group.id === id)),
     userGroups: user => groups,
+    del: id => {
+      groups = groups.filter(groups => groups.id !== id);
+      return id;
+    },
+    //Returns groups, found by starts with partialName in ALL APPLICATION GROUPS
     find:
       partialName => groups.filter(group => group.name.includes(partialName))
   }
@@ -195,7 +200,11 @@ const Events = {
     events.push(event);
     return events[events.length - 1];
   },
-  forUser: user => events
+  del: id => {
+    events = events.filter((event) => event.id !== id);
+    return id;
+  },
+  userEvents: user => events
 };
 
 export default {

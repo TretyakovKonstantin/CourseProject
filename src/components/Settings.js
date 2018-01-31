@@ -63,63 +63,67 @@ class SettingsForm extends React.Component {
 
   render() {
     return (
-      <form onSubmit={this.submitForm} className="input-group">
-        <fieldset>
+      <div className="settings-layout">
+        <div className="box-layout__box">
+          <form onSubmit={this.submitForm} className="input-group">
+            <fieldset>
 
-          <fieldset className="input-group__item">
-            <input
-              className="form-control"
-              type="text"
-              placeholder="URL of profile picture"
-              value={this.state.image}
-              onChange={this.updateState('image')}/>
-          </fieldset>
+              <fieldset className="input-group__item">
+                <input
+                  className="text-input"
+                  type="text"
+                  placeholder="URL of profile picture"
+                  value={this.state.image}
+                  onChange={this.updateState('image')}/>
+              </fieldset>
 
-          <fieldset className="input-group__item">
-            <input
-              className="form-control form-control-lg"
-              type="text"
-              placeholder="Username"
-              value={this.state.username}
-              onChange={this.updateState('username')}/>
-          </fieldset>
+              <fieldset className="input-group__item">
+                <input
+                  className="text-input"
+                  type="text"
+                  placeholder="Username"
+                  value={this.state.username}
+                  onChange={this.updateState('username')}/>
+              </fieldset>
 
-          <fieldset className="input-group__item">
+              <fieldset className="input-group__item">
             <textarea
-              className="form-control form-control-lg"
+              className="text-input"
               rows="8"
               placeholder="Short bio about you"
               value={this.state.bio}
               onChange={this.updateState('bio')}>
             </textarea>
-          </fieldset>
+              </fieldset>
 
-          <fieldset className="input-group__item">
-            <input
-              className="form-control form-control-lg"
-              type="email"
-              placeholder="Email"
-              value={this.state.email}
-              onChange={this.updateState('email')}/>
-          </fieldset>
+              <fieldset className="input-group__item">
+                <input
+                  className="text-input"
+                  type="email"
+                  placeholder="Email"
+                  value={this.state.email}
+                  onChange={this.updateState('email')}/>
+              </fieldset>
 
-          <fieldset className="input-group__item">
-            <input
-              className="form-control form-control-lg"
-              type="password"
-              placeholder="New Password"
-              value={this.state.password}
-              onChange={this.updateState('password')}/>
-          </fieldset>
+              <fieldset className="input-group__item">
+                <input
+                  className="text-input"
+                  type="password"
+                  placeholder="New Password"
+                  value={this.state.password}
+                  onChange={this.updateState('password')}/>
+              </fieldset>
 
-          <Button
-            type="submit"
-            disabled={this.state.inProgress}>
-            Update Settings
-          </Button>
+              <Button
+                type="submit"
+                disabled={this.state.inProgress}>
+                Update Settings
+              </Button>
 
-        </fieldset>
-      </form>
+            </fieldset>
+          </form>
+        </div>
+      </div>
     );
   }
 }
@@ -140,30 +144,22 @@ class Settings extends React.Component {
   render() {
     return (
       <div className="regular-page">
-        <div>
-          <div>
-            <div>
 
-              <h1>Your Settings</h1>
+        <h1>Your Settings</h1>
 
-              <ListErrors errors={this.props.errors}/>
+        <ListErrors errors={this.props.errors}/>
 
-              <SettingsForm
-                currentUser={this.props.currentUser}
-                onSubmitForm={this.props.onSubmitForm}/>
+        <SettingsForm
+          currentUser={this.props.currentUser}
+          onSubmitForm={this.props.onSubmitForm}/>
 
-              <hr/>
-
-              <button
-                className="button button--link"
-                onClick={this.props.onClickLogout}>
-                Or click here to logout.
-              </button>
-
-            </div>
-          </div>
-        </div>
+        <button
+          className="button button--link"
+          onClick={this.props.onClickLogout}>
+          Or click here to logout.
+        </button>
       </div>
+
     );
   }
 }

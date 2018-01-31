@@ -36,41 +36,6 @@ const LoggedInView = props => {
           </div>
         </div>
       </header>
-      // <div className="header__content">
-      //
-      //   <p className="header__title">
-      //     <Link to="/">
-      //       <i className="ion-ios-home"/>&nbsp;Home
-      //     </Link>
-      //   </p>
-      //
-      //   <p className="header__title">
-      //     <Link to="/groups">
-      //       <i className="ion-person-stalker"/>&nbsp;Группы
-      //     </Link>
-      //   </p>
-      //
-      //
-      //   <p className="header__title">
-      //     <Link to="/settings">
-      //       <i className="ion-gear-a"/>&nbsp;Настройки
-      //     </Link>
-      //   </p>
-      //
-      //   <li className="header__title">
-      //     <Link to={`/personal/@${props.currentUser.username}`}>
-      //       <i className="ion-person"/>&nbsp;{props.currentUser.username}
-      //     </Link>
-      //   </li>
-      //
-      //
-      //   <li className="header__title">
-      //     <Link to="/" onClick={props.onClickLogout}>
-      //       <i className=""/>&nbsp;{props.currentUser.username}
-      //     </Link>
-      //   </li>
-      //
-      // </div>
     );
   }
 

@@ -17,10 +17,10 @@ const PersonalCabinet = () => {
               <button className="button button--link"><i className="ion-locked"/> Личная Информация</button></Link>
           </li>
           <li>
-            <Link to={`/personal/timetable`}><button className="button button--link"><i className="ion-ios-clock"/> Расписание</button></Link>
+            <Link to={`/personal/timetable`}><button className="button button--link"><i className="ion-android-time"/> Расписание</button></Link>
           </li>
           <li>
-            <Link to={`/personal/notes`}><button className="button button--link"><i className="ion-clipboard"/> Личные заметки</button></Link>
+            <Link to={`/personal/notes`}><button className="button button--link"><i className="ion-compose"/> Личные заметки</button></Link>
           </li>
         </ul>
       </div>

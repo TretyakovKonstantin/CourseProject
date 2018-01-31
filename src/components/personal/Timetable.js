@@ -1,36 +1,67 @@
 import React, {Component} from 'react';
 import {Schedule} from 'primereact/components/schedule/Schedule';
+import {connect} from 'react-redux';
+import agent from "../../agent";
+import uuid from 'uuid';
+import {
+  ADD_EVENT, REMOVE_EVENT, EVENT_PAGE_LOADED, EVENT_PAGE_UNLOADED
+} from "../../constants/actionTypes";
 
-const mapStateToProps = () => {
+const mapStateToProps = state => ({
+  events: state.event.events,
+  currentUser: state.common.currentUser
+});
 
-};
+const mapDispatchToProps = dispatch => ({
+  onLoad: payload => dispatch({type: EVENT_PAGE_LOADED, payload}),
+  onAddEvent: payload =>
+    dispatch({type: ADD_EVENT, payload}),
+  onRemoveEvent: payload =>
+    dispatch({type: REMOVE_EVENT, payload}),
+  onUnload: () => dispatch({type: EVENT_PAGE_UNLOADED})
+});
 
-export default class Timetable extends Component {
-  onDayClick = (date) => {
+
+class Timetable extends Component {
+  header = {
+    left: 'prev,next today',
+    center: 'title',
+    right: 'month,agendaWeek,agendaDay'
+  };
+
+  componentWillMount() {
+    this.props.onLoad(
+      agent.Events.userEvents(this.props.currentUser)
+    );
+  }
+
+  componentWillUnmount() {
+    this.props.onUnload();
+  }
+
+  onRemoveEvent = id => {
+    this.props.onRemoveEvent(agent.Events.del(id));
+  };
+
+  onDayClick = ({date}) => {
+    this.props.onAddEvent(agent.Events.create({"id": uuid(), "title": "EVENT", "start": date }))
+  };
+
+  onEventResize = (event, delta) => {
 
   };
 
   render() {
-    this.header = {
-      left: 'prev,next today',
-      center: 'title',
-      right: 'month,agendaWeek,agendaDay'
-    };
 
     return (
       <div>
-        <div className="content-section">
-          <div className="feature-intro">
-            <h1>Schedule</h1>
-            <p>Schedule is an event calendar based on FullCalendar.</p>
-          </div>
-        </div>
-
-        <div className="content-section implementation">
-          <Schedule header={this.header} eventLimit={4}/>
+        <div>
+          {console.log(">>>>>>>>>", this.props.events)}
+          <Schedule header={this.header} events={this.props.events} onDayClick={this.onDayClick} eventLimit={4}/>
         </div>
       </div>
     );
   }
 }
 
+export default connect(mapStateToProps, mapDispatchToProps)(Timetable);

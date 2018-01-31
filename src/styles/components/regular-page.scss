@@ -2,9 +2,10 @@
   background: url('/images/castle.jpg') no-repeat fixed center;
   background-size: cover;
   align-items: center;
-  height: 100vh;
+  height:100%;
+  min-height:100vh;
   justify-content: space-between;
-  width: 100vw;
+  width: 100%;
   padding:0;
 }
 
@@ -13,8 +14,8 @@
   flex-direction: column;
 }
 
-.right-view {
-
+.bottom-view {
+  background: none;
 }
 
 //TODO - pin this view to the right

@@ -1,6 +1,6 @@
 import React from 'react';
 import {connect} from 'react-redux';
-import CreateGroupModal from './CreateGroupModal';
+import CreateGroupModal from './GroupModal';
 import GroupPanel from './GroupPanel';
 import {
   GROUPS_PAGE_LOADED, GROUPS_PAGE_UNLOADED, ADD_GROUP, REMOVE_GROUP, GROUP_PAGE_UPDATED
@@ -67,7 +67,7 @@ class Groups extends React.Component {
         <div className="items-list">
           <ul>
             <li>
-              <button className="button button--link" onClick={this.onOpenModal}>+</button>
+              <button className="button button--link" onClick={this.onOpenModal}>+ Add Group</button>
             </li>
             {this.props.groups.map((group) => {
               return (
@@ -87,7 +87,7 @@ class Groups extends React.Component {
           onCloseModal={this.onCloseModal}
           groups={this.props.groups}
         />
-        <div className="right-view">
+        <div className="bottom-view">
           <GroupPanel group={this.state.selectedGroup}/>
         </div>
       </div>
