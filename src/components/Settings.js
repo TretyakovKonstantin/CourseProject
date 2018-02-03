@@ -64,29 +64,29 @@ class SettingsForm extends React.Component {
   render() {
     return (
       <div className="settings-layout">
-        <div className="box-layout__box">
-          <form onSubmit={this.submitForm} className="input-group">
-            <fieldset>
+        {/*<div className="box-layout__box">*/}
+        <form onSubmit={this.submitForm} className="input-group">
+          <fieldset>
 
-              <fieldset className="input-group__item">
-                <input
-                  className="text-input"
-                  type="text"
-                  placeholder="URL of profile picture"
-                  value={this.state.image}
-                  onChange={this.updateState('image')}/>
-              </fieldset>
+            <fieldset className="input-group__item">
+              <input
+                className="text-input"
+                type="text"
+                placeholder="URL of profile picture"
+                value={this.state.image}
+                onChange={this.updateState('image')}/>
+            </fieldset>
 
-              <fieldset className="input-group__item">
-                <input
-                  className="text-input"
-                  type="text"
-                  placeholder="Username"
-                  value={this.state.username}
-                  onChange={this.updateState('username')}/>
-              </fieldset>
+            <fieldset className="input-group__item">
+              <input
+                className="text-input"
+                type="text"
+                placeholder="Username"
+                value={this.state.username}
+                onChange={this.updateState('username')}/>
+            </fieldset>
 
-              <fieldset className="input-group__item">
+            <fieldset className="input-group__item">
             <textarea
               className="text-input"
               rows="8"
@@ -94,35 +94,35 @@ class SettingsForm extends React.Component {
               value={this.state.bio}
               onChange={this.updateState('bio')}>
             </textarea>
-              </fieldset>
-
-              <fieldset className="input-group__item">
-                <input
-                  className="text-input"
-                  type="email"
-                  placeholder="Email"
-                  value={this.state.email}
-                  onChange={this.updateState('email')}/>
-              </fieldset>
-
-              <fieldset className="input-group__item">
-                <input
-                  className="text-input"
-                  type="password"
-                  placeholder="New Password"
-                  value={this.state.password}
-                  onChange={this.updateState('password')}/>
-              </fieldset>
-
-              <Button
-                type="submit"
-                disabled={this.state.inProgress}>
-                Update Settings
-              </Button>
-
             </fieldset>
-          </form>
-        </div>
+
+            <fieldset className="input-group__item">
+              <input
+                className="text-input"
+                type="email"
+                placeholder="Email"
+                value={this.state.email}
+                onChange={this.updateState('email')}/>
+            </fieldset>
+
+            <fieldset className="input-group__item">
+              <input
+                className="text-input"
+                type="password"
+                placeholder="New Password"
+                value={this.state.password}
+                onChange={this.updateState('password')}/>
+            </fieldset>
+
+            <Button
+              type="submit"
+              disabled={this.state.inProgress}>
+              Update Settings
+            </Button>
+
+          </fieldset>
+        </form>
+       {/*</div>*/}
       </div>
     );
   }
@@ -144,7 +144,6 @@ class Settings extends React.Component {
   render() {
     return (
       <div className="regular-page">
-
         <h1>Your Settings</h1>
 
         <ListErrors errors={this.props.errors}/>

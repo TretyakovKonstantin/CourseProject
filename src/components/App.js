@@ -3,12 +3,8 @@ import React from 'react';
 import {connect} from 'react-redux';
 import {APP_LOAD, REDIRECT} from '../constants/actionTypes';
 import {Switch} from 'react-router-dom';
-import Article from '../components/Article';
-import Editor from '../components/Editor';
-import Home from '../components/Home';
 import Login from '../components/Login';
 import Profile from '../components/Profile';
-import ProfileFavorites from '../components/ProfileFavorites';
 import Register from '../components/Register';
 import Settings from '../components/Settings';
 import {store} from '../store';
@@ -19,6 +15,7 @@ import NotFoundPage from '../components/NotFoundPage';
 import PrivateRoute from '../components/routers/PrivateRoute';
 import PublicRoute from '../components/routers/PublicRoute';
 import {NonAuthPage} from "./NonAuthPage";
+import HomePage from './HomePage';
 
 const mapStateToProps = state => {
   return {
@@ -62,12 +59,8 @@ class App extends React.Component {
             <PublicRoute exact path="/auth" component={NonAuthPage}/>
             <PublicRoute path="/login" component={Login}/>
             <PublicRoute path="/register" component={Register}/>
-            <PrivateRoute exact path="/" component={Home}/>
-            <PrivateRoute path="/editor/:slug" component={Editor}/>
-            <PrivateRoute path="/editor" component={Editor}/>
-            <PrivateRoute path="/article/:id" component={Article}/>
+            <PrivateRoute exact path="/" component={HomePage}/>
             <PrivateRoute path="/settings" component={Settings}/>
-            <PrivateRoute path="/@:username/favorites" component={ProfileFavorites}/>
             <PrivateRoute path="/@:username" component={Profile}/>
             <PrivateRoute path="/groups" component={Groups}/>
             <PrivateRoute path="/personal" component={PersonalCabinet}/>

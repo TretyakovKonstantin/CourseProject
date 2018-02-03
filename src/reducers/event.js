@@ -21,7 +21,7 @@ export default (state = {}, action) => {
       const eventId = action.payload;
       return {
         ...state,
-        events: state.filter(({id}) => id !== eventId)
+        events: state.events.filter(({id}) => id !== eventId)
       };
     default:
       return state;

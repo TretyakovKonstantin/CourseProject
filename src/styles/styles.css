@@ -145,15 +145,15 @@ ul {
   display: flex;
   height: 100vh;
   justify-content: center;
-  width: 80vw;
-  color: #364051; }
+  width: 100vw;
+  color: #364051 !important; }
 
 .box-layout__box {
   background: rgba(255, 255, 255, 0.85);
   border-radius: 3px;
   padding: 3.2rem 1.6rem;
   text-align: center;
-  width: 25rem; }
+  width: 30vw; }
 
 .box-layout__title {
   margin: 0 0 1.6rem 0;
