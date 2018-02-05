@@ -31,9 +31,14 @@ class Groups extends React.Component {
 
   componentWillMount() {
     let groups = agent.Groups.userGroups(this.props.currentUser);
+    // this.setState({selectedGroup: groups ? groups[0] : []});
     this.props.onLoad([
       groups
     ]);
+    if (groups) {
+      let group = groups[0];
+      this.props.onGroupUpdate([group, agent.News.forGroup(group.id)])
+    }
   }
 
   componentWillUnmount() {
@@ -67,12 +72,14 @@ class Groups extends React.Component {
         <div className="items-list">
           <ul>
             <li>
-              <button className="button button--link" onClick={this.onOpenModal}>+ Add Group</button>
+              <button className="button button--link" onClick={this.onOpenModal}><i className="ion-plus-round"/> Add
+                Group
+              </button>
             </li>
             {this.props.groups.map((group) => {
               return (
-                <li>
-                  <button className="button button--link" key={group.id} onClick={() => {
+                <li key={group.id}>
+                  <button className="button button--link" onClick={() => {
                     this.props.onGroupUpdate([group, agent.News.forGroup(group.id)])
                   }}>{group.name}</button>
                 </li>
@@ -87,8 +94,8 @@ class Groups extends React.Component {
           onCloseModal={this.onCloseModal}
           groups={this.props.groups}
         />
-        <div className="bottom-view">
-          <GroupPanel group={this.state.selectedGroup}/>
+        <div className="regular-page__main-content">
+          <GroupPanel/>
         </div>
       </div>
     );

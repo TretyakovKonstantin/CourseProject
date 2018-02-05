@@ -52,18 +52,12 @@ class Profile extends React.Component {
       this.props.profile.username === this.props.currentUser.username;
 
     return (
-      <div className="regular-page">
-        <img src={profile.image} className="user-img" alt={profile.username}/>
+      <div className="regular-page__main-content">
+        <img className="personal-image" src={profile.image} alt={profile.username}/>
         <h4>{profile.username}</h4>
         <p>{profile.bio}</p>
 
         <EditProfileSettings isUser={isUser}/>
-
-        <div className="container">
-          <div className="row">
-          </div>
-        </div>
-
       </div>
     );
   }

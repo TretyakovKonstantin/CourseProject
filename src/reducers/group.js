@@ -25,7 +25,7 @@ export default (state = {}, action) => {
         ...state,
         groups: action.error ?
           null :
-          (state.groups || []).concat([action.payload.group])
+         [...state.groups, action.payload.group]
       };
     case REMOVE_GROUP:
       const groupId = action.groupId;

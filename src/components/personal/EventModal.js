@@ -4,26 +4,57 @@ import uuid from 'uuid';
 import {Calendar} from 'primereact/components/calendar/Calendar.js';
 
 export default class EventModal extends React.Component {
-  state = {
-    startDate: this.props.selectedDate,
-    endDate: this.props.selectedDate,
-    dates: this.props.selectedDate,
-    eventName: '',
-    error: '',
-    foundGroups: []
-  };
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      startDate: props.event ? props.event.startDate : props.selectedDate,
+      endDate: props.event ? props.event.endDate : props.selectedDate,
+      dates: props.event ? props.event.startDate + "," + props.event.endDate : props.selectedDate,
+      title: props.event ? props.event.title : '',
+      error: '',
+      foundGroups: []
+    };
+  }
 
   onTitleInputChanged = (e) => {
-    let eventName = e.target.value;
-    this.setState(() => ({eventName}))
+    let title = e.target.value;
+    this.setState(() => ({title}))
   };
 
   onDateInputChanged = (e) => {
     let dates = e.value;
-    let [startDate, endDate] = dates.split(" - ");
+    let [startDate, endDate] = dates.toString().split(",");
     this.setState({dates, startDate, endDate})
   };
 
+  onSaveButtonClick = () => {
+    let title = this.state.title;
+    let startDate = this.state.startDate;
+    let endDate = this.state.endDate;
+    let id = uuid();
+    if (!title) {
+      this.setState({error: 'Укажите, пожайлуста, название события'});
+      return;
+    }
+    console.log(this.state.title, this.state.startDate, this.state.endDate);
+    this.props.event ?
+      this.props.onSubmit({
+        id,
+        title,
+        startDate,
+        endDate
+      }) : this.props.onEditEvent({
+        id,
+        title,
+        startDate,
+        endDate
+      })
+  };
+
+  onRemoveEvent = () => {
+    this.props.onRemoveEvent(this.state.event);
+  };
 
   render() {
     return (
@@ -32,19 +63,11 @@ export default class EventModal extends React.Component {
         contentLabel="Create event"
         onRequestClose={this.props.onCloseModal}
         ariaHideApp={false}
+        closeTimeoutMS={200}
+        className="modal"
       >
         <div>
-          <form className="input-group"
-                onSubmit={() => {
-                  console.log(this.state.eventName, this.state.startDate, this.state.endDate);
-                  this.props.onSubmit({
-                    id: uuid(),
-                    eventName: this.state.eventName,
-                    startDate: this.state.startDate,
-                    endDate: this.state.endDate
-                  })
-                }}
-          >
+          <form>
             <fieldset>
 
               <p>Название события</p>
@@ -53,24 +76,32 @@ export default class EventModal extends React.Component {
                   className="text-input"
                   type="text"
                   placeholder="Событие"
-                  value={this.props.eventName}
+                  value={this.props.title}
                   onChange={this.onTitleInputChanged}
                 />
               </fieldset>
 
-              <fieldset>
-                <Calendar className="input-group__item"
+              <fieldset className="input-group__item">
+                <Calendar
+                  placeholder="Введите временной промежуток"
                           selectionMode="range"
                           value={this.state.dates}
                           onChange={this.onDateInputChanged}
                 />
               </fieldset>
 
-              <button className="button" type="submit"><i className="ion-plus-round"/> Create
-              </button>
-              <button className="button" onClick={this.props.onRemoveEvent}><i className="ion-trash-a"/> Delete</button>
             </fieldset>
           </form>
+          <button className="button" onClick={this.onSaveButtonClick}>
+            <i className="ion-plus-round"/> Сохранить
+          </button>
+          {this.props.event ?
+            <button className="button" onClick={this.onRemoveEvent}>
+              <i className="ion-trash-a"/> Удалить
+            </button> :
+            <button className="button" onClick={this.props.onCloseModal}>Отмена</button>
+          }
+
         </div>
         {this.state.error && <p className="form_error">{this.state.error}</p>}
       </Modal>

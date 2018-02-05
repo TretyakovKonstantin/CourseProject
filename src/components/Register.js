@@ -51,10 +51,10 @@ class Register extends React.Component {
       <div className="auth-layout">
 
         <div>
-          <h1>Sign Up</h1>
+          <h1 className="box-layout__title">Зарегистрироваться</h1>
           <p>
             <Link to="/login">
-              Have an account?
+              Уже есть аккаунт?
             </Link>
           </p>
 
@@ -67,7 +67,7 @@ class Register extends React.Component {
                 <input
                   className="text-input"
                   type="text"
-                  placeholder="Username"
+                  placeholder="Имя пользователя"
                   value={this.props.username}
                   onChange={this.changeUsername}/>
               </fieldset>
@@ -85,7 +85,7 @@ class Register extends React.Component {
                 <input
                   className="text-input"
                   type="password"
-                  placeholder="Password"
+                  placeholder="Пароль"
                   value={this.props.password}
                   onChange={this.changePassword}/>
               </fieldset>
@@ -94,7 +94,7 @@ class Register extends React.Component {
                 className="button"
                 type="submit"
                 disabled={this.props.inProgress}>
-                Sign up
+                Зарегистрироваться
               </button>
 
             </fieldset>

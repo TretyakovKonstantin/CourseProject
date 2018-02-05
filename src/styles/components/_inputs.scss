@@ -1,10 +1,10 @@
 .text-input {
-  border: 1px solid #cacccd;
   height: 50px;
   font-size: $font-size-large;
   font-weight: 300;
+  width: 25vw;
   padding: $s-size;
-  background: none;
+  background: rgba($dark-blue, 0.85);
   color: white;
 }
 
@@ -15,5 +15,31 @@
 .textarea {
   @extend .text-input;
   height: 10rem;
-  border: none;
+  resize: none;
+}
+
+.note-textarea {
+  @extend .textarea;
+  background: $off-white;
+  color: $dark-blue;
+  width: 65vw;
+}
+
+.note-text-input {
+  @extend .text-input;
+  background: $off-white;
+  color: $dark-blue;
+  width: 65vw;
+}
+
+.ui-dropdown-label {
+  @extend .text-input
+}
+.ui-inputtext {
+  @extend .text-input;
+  border-radius: 0;
+}
+
+.ui-dropdown-trigger {
+ @extend .text-input
 }

@@ -1,7 +1,3 @@
-////Do not work without explicit import because css file creating and ambigous importing. If imports explicitly scss, settings do not import
-//TODO - Fix settings import
-@import '../base/settings';
-
 .regular-page {
   background: url('/images/castle.jpg') no-repeat fixed center;
   background-size: cover;
@@ -21,8 +17,22 @@
   text-align: center;
 }
 
+.regular-page__plain-text {
+  background: rgba($dark-blue, 0.7);
+  font-size: 2rem;
+  color: $off-white;
+  width: 80vw;
+  position: center;
+  padding: $xl-size;
+  margin: $s-size auto;
+}
+
+.regular-page__plain-text a:hover {
+  text-decoration: underline;
+  color: rgba(hotpink, 0.8);
+}
+
 .items-list {
-  //position: fixed;
   float: left;
   left: $s-size;
   display: flex;
@@ -37,11 +47,3 @@
   float: right;
   right: $s-size;
 }
-
-//TODO - pin this view to the right
-
-//.ui-datascroller-content {
-//  background: transparent !important;
-//  border: none;
-//  width: 60vw;
-//}

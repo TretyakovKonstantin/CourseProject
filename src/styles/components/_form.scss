@@ -12,6 +12,20 @@
   color: red;
 }
 
+.box-layout__box {
+  background: fade-out(white, .15);
+  border-radius: 3px;
+  padding: $l-size $m-size;
+  text-align: center;
+  width: 30vw;
+}
+
+.box-layout__title {
+  margin: 0 0 $m-size 0;
+  line-height: 1;
+  color: white;
+}
+
 .auth-layout {
   align-items: center;
   background: url('/images/train.jpg');
@@ -21,6 +35,12 @@
   justify-content: center;
   width: 100vw;
   color: $dark-blue;
+}
+
+.auth-button {
+  @extend .button;
+  width: 20vw;
+  border-radius: 0.2rem;
 }
 
 .settings-layout {
@@ -33,16 +53,6 @@
   color: $dark-blue !important;
 }
 
-.box-layout__box {
-  background: fade-out(white, .15);
-  border-radius: 3px;
-  padding: $l-size $m-size;
-  text-align: center;
-  width: 30vw;
-}
-
-.box-layout__title {
-  margin: 0 0 $m-size 0;
-  line-height: 1;
-  color: $dark-blue;
+.form_error {
+  color: red;
 }

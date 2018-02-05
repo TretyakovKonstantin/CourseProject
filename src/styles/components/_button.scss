@@ -18,3 +18,8 @@
 .button--secondary {
   background: #888;
 }
+
+.button--link__blue {
+  @extend .button--link;
+  color: rgba($dark-blue, 0.7)
+}

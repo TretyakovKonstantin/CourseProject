@@ -15,7 +15,7 @@ export default (state = {}, action) => {
         ...state,
         events: action.error ?
           null :
-          (state.events || []).concat([action.payload])
+          [...state.events, action.payload]
       };
     case REMOVE_EVENT:
       const eventId = action.payload;

@@ -2,7 +2,6 @@ import ListErrors from './ListErrors';
 import React from 'react';
 import agent from '../agent';
 import {connect} from 'react-redux';
-import {Button} from 'primereact/components/button/Button';
 import {
   SETTINGS_SAVED,
   SETTINGS_PAGE_UNLOADED,
@@ -88,7 +87,7 @@ class SettingsForm extends React.Component {
 
             <fieldset className="input-group__item">
             <textarea
-              className="text-input"
+              className="textarea"
               rows="8"
               placeholder="Short bio about you"
               value={this.state.bio}
@@ -114,15 +113,21 @@ class SettingsForm extends React.Component {
                 onChange={this.updateState('password')}/>
             </fieldset>
 
-            <Button
+            <button
+              className="button"
               type="submit"
               disabled={this.state.inProgress}>
               Update Settings
-            </Button>
+            </button>
 
+          <button
+            className="button button--link"
+            onClick={this.props.onClickLogout}>
+            Or click here to logout.
+          </button>
           </fieldset>
         </form>
-       {/*</div>*/}
+        {/*</div>*/}
       </div>
     );
   }
@@ -144,19 +149,18 @@ class Settings extends React.Component {
   render() {
     return (
       <div className="regular-page">
-        <h1>Your Settings</h1>
+        <div>
+          <h2 className="regular-page__title">Your Settings</h2>
 
-        <ListErrors errors={this.props.errors}/>
+          <ListErrors errors={this.props.errors}/>
 
-        <SettingsForm
-          currentUser={this.props.currentUser}
-          onSubmitForm={this.props.onSubmitForm}/>
+          <SettingsForm
+            currentUser={this.props.currentUser}
+            onSubmitForm={this.props.onSubmitForm}
+            onClickLogout={this.props.onClickLogout}
+          />
 
-        <button
-          className="button button--link"
-          onClick={this.props.onClickLogout}>
-          Or click here to logout.
-        </button>
+        </div>
       </div>
 
     );

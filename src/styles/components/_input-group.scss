@@ -1,15 +1,17 @@
 .input-group {
+  border: none;
   display: flex;
   flex-direction: column;
   margin-bottom: $m-size;
+  background-color: rgba($off-white, 0.3);
   @media (min-width: $desktop-breakpoint) {
     flex-direction: row;
     margin-bottom: $l-size;
   }
-  border: none;
 }
 
 .input-group__item {
+  border: none;
   margin-bottom: $s-size;
   @media (min-width: $desktop-breakpoint) {
     margin: 0 $s-size 0 0;

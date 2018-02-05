@@ -1,19 +1,65 @@
 import React from 'react';
+import {connect} from 'react-redux'
+import NoteInputTemplate from "./NoteInputTemplate";
+import {DataList} from "primereact/components/datalist/DataList";
+import agent from "../../agent";
+import {
+  ADD_NOTE, NOTES_PAGE_LOADED, NOTES_PAGE_UNLOADED, REMOVE_NOTE
+} from "../../constants/actionTypes";
 
+const mapStateToProps = state => ({
+  notes: state.note.notes,
+  currentUser: state.common.currentUser
+});
 
-const PersonalNotes = props => {
-  let p = [];
-  for (let i = 0; i < 100; i++) {
-    p.push(i);
+const mapDispatchToProps = dispatch => ({
+  onLoad: payload => dispatch({type: NOTES_PAGE_LOADED, payload}),
+  onAddNote: payload =>
+    dispatch({type: ADD_NOTE, payload}),
+  onRemoveNote: payload =>
+    dispatch({type: REMOVE_NOTE, payload}),
+  onUnload: () => dispatch({type: NOTES_PAGE_UNLOADED})
+});
+
+class PersonalNotes extends React.Component {
+  componentWillMount() {
+    let notes = agent.Notes.userNotes(this.props.currentUser);
+    this.props.onLoad(notes);
   }
-  return (
-    <div>
-      Мои Заметки
-      {
-        p.map((i) => <p>{i}</p>)
-      }
-    </div>
-  );
-};
 
-export default PersonalNotes;
+  componentWillUnmount() {
+    this.props.onUnload();
+  }
+
+  onAddNote = (note) => {
+    this.props.onAddNote(agent.Notes.create(note))
+  };
+
+  onRemoveNote = (id) => {
+    this.props.onRemoveNote(agent.Notes.del(id))
+  };
+
+  noteTemplate = ({id, header, info}) => {
+    const onRemoveNoteClick = () => {
+      this.onRemoveNote(id);
+    };
+    return (
+      <div className="news">
+        <h3>{header}</h3>
+        <p>{info}</p>
+        <button className="button button--link__blue" onClick={onRemoveNoteClick}>Удалить заметку</button>
+      </div>)
+  };
+
+  render() {
+    return (
+      <div className="regular-page__main-content">
+        <h2>Мои Заметки</h2>
+        <NoteInputTemplate onAddNote={this.onAddNote}/>
+        <DataList value={this.props.notes} itemTemplate={this.noteTemplate} lazy={true} rows={20}/>
+      </div>
+    );
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(PersonalNotes);

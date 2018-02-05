@@ -5,6 +5,7 @@ import profile from './reducers/profile';
 import settings from './reducers/settings';
 import group from './reducers/group';
 import event from './reducers/event';
+import note from './reducers/note'
 import {routerReducer} from 'react-router-redux';
 
 export default combineReducers({
@@ -14,5 +15,6 @@ export default combineReducers({
   settings,
   group,
   event,
+  note,
   router: routerReducer
 });

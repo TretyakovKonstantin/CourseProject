@@ -5,7 +5,7 @@ const superagent = superagentPromise(_superagent, global.Promise);
 
 const API_ROOT = 'https://conduit.productionready.io/api';
 
-const encode = encodeURIComponent;
+// const encode = encodeURIComponent;
 const responseBody = res => res.body;
 
 let token = null;
@@ -37,45 +37,45 @@ const Auth = {
     requests.put('/user', {user})
 };
 
-const Tags = {
-  getAll: () => requests.get('/tags')
-};
-
-const limit = (count, p) => `limit=${count}&offset=${p ? p * count : 0}`;
-const omitSlug = article => Object.assign({}, article, {slug: undefined})
-const Articles = {
-  all: page =>
-    requests.get(`/articles?${limit(10, page)}`),
-  byAuthor: (author, page) =>
-    requests.get(`/articles?author=${encode(author)}&${limit(5, page)}`),
-  byTag: (tag, page) =>
-    requests.get(`/articles?tag=${encode(tag)}&${limit(10, page)}`),
-  del: slug =>
-    requests.del(`/articles/${slug}`),
-  favorite: slug =>
-    requests.post(`/articles/${slug}/favorite`),
-  favoritedBy: (author, page) =>
-    requests.get(`/articles?favorited=${encode(author)}&${limit(5, page)}`),
-  feed: () =>
-    requests.get('/articles/feed?limit=10&offset=0'),
-  get: slug =>
-    requests.get(`/articles/${slug}`),
-  unfavorite: slug =>
-    requests.del(`/articles/${slug}/favorite`),
-  update: article =>
-    requests.put(`/articles/${article.slug}`, {article: omitSlug(article)}),
-  create: article =>
-    requests.post('/articles', {article})
-};
-
-const Comments = {
-  create: (slug, comment) =>
-    requests.post(`/articles/${slug}/comments`, {comment}),
-  delete: (slug, commentId) =>
-    requests.del(`/articles/${slug}/comments/${commentId}`),
-  forArticle: slug =>
-    requests.get(`/articles/${slug}/comments`)
-};
+// const Tags = {
+//   getAll: () => requests.get('/tags')
+// };
+//
+// const limit = (count, p) => `limit=${count}&offset=${p ? p * count : 0}`;
+// const omitSlug = article => Object.assign({}, article, {slug: undefined})
+// const Articles = {
+//   all: page =>
+//     requests.get(`/articles?${limit(10, page)}`),
+//   byAuthor: (author, page) =>
+//     requests.get(`/articles?author=${encode(author)}&${limit(5, page)}`),
+//   byTag: (tag, page) =>
+//     requests.get(`/articles?tag=${encode(tag)}&${limit(10, page)}`),
+//   del: slug =>
+//     requests.del(`/articles/${slug}`),
+//   favorite: slug =>
+//     requests.post(`/articles/${slug}/favorite`),
+//   favoritedBy: (author, page) =>
+//     requests.get(`/articles?favorited=${encode(author)}&${limit(5, page)}`),
+//   feed: () =>
+//     requests.get('/articles/feed?limit=10&offset=0'),
+//   get: slug =>
+//     requests.get(`/articles/${slug}`),
+//   unfavorite: slug =>
+//     requests.del(`/articles/${slug}/favorite`),
+//   update: article =>
+//     requests.put(`/articles/${article.slug}`, {article: omitSlug(article)}),
+//   create: article =>
+//     requests.post('/articles', {article})
+// };
+//
+// const Comments = {
+//   create: (slug, comment) =>
+//     requests.post(`/articles/${slug}/comments`, {comment}),
+//   delete: (slug, commentId) =>
+//     requests.del(`/articles/${slug}/comments/${commentId}`),
+//   forArticle: slug =>
+//     requests.get(`/articles/${slug}/comments`)
+// };
 
 const Profile = {
   follow: username =>
@@ -153,11 +153,11 @@ let news = [
   {
     id: '4',
     groupId: '2',
-    header: 'Hello World',
-    info: 'I was drunk, I was me, I was happy, I was drunk, I was me, I was happy, I was drunk, I was me, I was happy, ' +
-    'I was drunk, I was me, I was happy, I was drunk, I was me, I was happy, I was drunk, I was me, I was happy, ' +
-    'I was drunk, I was me, I was happy, I was drunk, I was me, I was happy, I was drunk, I was me, I was happy, ' +
-    'I was drunk, I was me, I was happy, I was drunk, I was me, I was happy, I was drunk, I was me, I was happy, '
+    header: 'What is this',
+    info: 'Dumbledore\'s Army (or D.A. for short) is a fictional student organisation in J. K. Rowling\'s Harry Potter' +
+    'series that is founded by the main characters, Harry Potter, Ron Weasley and Hermione Granger, to stand up against' +
+    'the regime of Hogwarts High Inquisitor Dolores Umbridge, as well as to learn practical Defence Against the Dark ' +
+    'Arts. It was founded in the fifth book, Harry Potter and the Order of the Phoenix.'
   }
 ];
 
@@ -207,15 +207,57 @@ const Events = {
   userEvents: user => events
 };
 
+let notes = [
+  {
+    id: '1',
+    header: 'Rifleman\'s Creed',
+    info: 'This is my rifle. There are many like it, but this one is mine.\n' +
+    'My rifle is my best friend. It is my life. I must master it as I must master my life.\n' +
+    'Without me, my rifle is useless. Without my rifle, I am useless. I must fire my rifle true. I must shoot ' +
+    'straighter than my enemy who is trying to kill me. I must shoot him before he shoots me. I will…'
+  },
+  {
+    id: '2',
+    header: 'Airman\'s Creed',
+    info: 'The Airman\'s Creed is a creed for members of the U.S. Air Force. It was introduced in 2007 ' +
+    'by General T. Michael Moseley, Chief of Staff of the U.S. Air Force.[1] In a letter introducing the creed, ' +
+    'Moseley wrote that one of his "top priorities" was to "reinvigorate the warrior ethos in every Airman of our Total ' +
+    'Force."[1] Thus, the intent of the creed was to enhance the building of a warrior ethos among its Airmen and ' +
+    'to provide Airmen a tangible statement of beliefs.'
+  },
+  {
+    id: '3',
+    header: 'Creed of the United States Coast Guardsman',
+    info: '\n' +
+    'I am proud to be a United States Coast Guardsman.\n' +
+    'I revere that long line of expert seamen who by their devotion to duty and sacrifice of self have made it possible' +
+    'for me to be a member of a service honored and respected, in peace and in war, throughout the world.\n' +
+    'I never, by word or deed, will bring reproach upon the fair name of my service, nor permit others to do so unchallenged. '
+  }
+];
+
+
+const Notes = {
+  userNotes: user => {
+    return notes;
+  },
+  create: note => {
+    notes.push(note);
+    return notes[notes.length - 1]
+  },
+  del: id => {
+    notes = notes.filter(note => note.id !== id)
+    return id
+  }
+};
+
 export default {
-  Articles,
   Auth,
-  Comments,
   Profile,
-  Tags,
   Groups,
   News,
   Events,
+  Notes,
   setToken: _token => {
     token = _token;
   }

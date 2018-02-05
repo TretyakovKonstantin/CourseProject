@@ -2,7 +2,6 @@ import React, {Component} from 'react';
 import {Schedule} from 'primereact/components/schedule/Schedule';
 import {connect} from 'react-redux';
 import agent from "../../agent";
-import uuid from 'uuid';
 import EventModal from './EventModal';
 import {
   ADD_EVENT, REMOVE_EVENT, EVENT_PAGE_LOADED, EVENT_PAGE_UNLOADED
@@ -47,12 +46,18 @@ class Timetable extends Component {
     this.props.onUnload();
   }
 
-  onRemoveEvent = id => {
+  onRemoveEvent = ({id}) => {
     this.props.onRemoveEvent(agent.Events.del(id));
+    this.onCloseModal();
   };
 
-  onAddEvent = ({date}) => {
-    this.props.onAddEvent(agent.Events.create({"id": uuid(), "title": "EVENT", "start": date}));
+  onAddEvent = (event) => {
+    this.props.onAddEvent(agent.Events.create(event));
+    this.onCloseModal();
+  };
+
+  onEditEvent = (event) => {
+    // this.props.onEditEvent(agent.Events.edit(event));
     this.onCloseModal();
   };
 
@@ -63,6 +68,7 @@ class Timetable extends Component {
   onDayClick = ({date}) => {
     this.setState(()=>({
       selectedDate: date,
+      selectedEvent: null,
       selectedOption: true
     }));
   };
@@ -90,6 +96,7 @@ class Timetable extends Component {
           onSubmit={this.onAddEvent}
           selectedOption={this.state.selectedOption}
           onCloseModal={this.onCloseModal}
+          event={this.state.selectedEvent}
           selectedDate={this.state.selectedDate}
           onRemoveEvent={this.onRemoveEvent}
         />

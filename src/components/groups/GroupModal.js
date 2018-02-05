@@ -18,13 +18,15 @@ class GroupModal extends React.Component {
   render() {
     return (
       <Modal
+        className="modal"
         isOpen={this.props.selectedOption}
         contentLabel="Create group"
         onRequestClose={this.props.onCloseModal}
         ariaHideApp={false}
+        closeTimeoutMS={200}
       >
         <p>Enter Group's name</p>
-        <input type="text" list="groups-list" onChange={(e) => {
+        <input type="text" className="text-input" list="groups-list" onChange={(e) => {
           const groupName = e.target.value;
           this.setState({
             error: '',
@@ -37,14 +39,15 @@ class GroupModal extends React.Component {
             return <option value={name} key={name}/>
           })}
         </datalist>
-        <button onClick={() => {
-          if (this.props.groups.map(group => group.name).includes(this.state.groupName)) {
-            this.setState({error: 'This group already exists. Please, select another group'});
-            return;
-          }
-          this.props.onSubmit({id: uuid(), name: this.state.groupName});
-          this.props.onCloseModal()
-        }}>Create
+        <button className="button"
+                onClick={() => {
+                  if (this.props.groups.map(group => group.name).includes(this.state.groupName)) {
+                    this.setState({error: 'This group already exists. Please, select another group'});
+                    return;
+                  }
+                  this.props.onSubmit({id: uuid(), name: this.state.groupName});
+                  this.props.onCloseModal()
+                }}>Create
         </button>
         {this.state.error && <p className="form_error">{this.state.error}</p>}
       </Modal>

@@ -20,7 +20,7 @@ class GroupPanel extends React.Component {
     }
     return (
       <div>
-        <h1>{this.props.group.name}</h1>
+        <h2 className="regular-page__title">{this.props.group.name}</h2>
         {
           this.props.news.length !== 0 ?
             <DataList value={this.props.news} itemTemplate={NewsTemplate} lazy={true} rows={20}/> :
