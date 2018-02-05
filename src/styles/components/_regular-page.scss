@@ -1,0 +1,47 @@
+////Do not work without explicit import because css file creating and ambigous importing. If imports explicitly scss, settings do not import
+//TODO - Fix settings import
+@import '../base/settings';
+
+.regular-page {
+  background: url('/images/castle.jpg') no-repeat fixed center;
+  background-size: cover;
+  align-items: center;
+  height:100%;
+  min-height:100vh;
+  justify-content: space-between;
+  width: 100%;
+  overflow: hidden;
+  padding:$s-size;
+}
+
+.regular-page__title {
+  alignment: center;
+  color: white;
+  margin: 0;
+  text-align: center;
+}
+
+.items-list {
+  //position: fixed;
+  float: left;
+  left: $s-size;
+  display: flex;
+  width: 25vw;
+  flex-direction: column;
+}
+
+.regular-page__main-content {
+  align-items: center;
+  position: sticky;
+  width: 70vw;
+  float: right;
+  right: $s-size;
+}
+
+//TODO - pin this view to the right
+
+//.ui-datascroller-content {
+//  background: transparent !important;
+//  border: none;
+//  width: 60vw;
+//}
