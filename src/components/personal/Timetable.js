@@ -3,8 +3,9 @@ import {Schedule} from 'primereact/components/schedule/Schedule';
 import {connect} from 'react-redux';
 import agent from "../../agent";
 import EventModal from './EventModal';
+import moment from 'moment';
 import {
-  ADD_EVENT, REMOVE_EVENT, EVENT_PAGE_LOADED, EVENT_PAGE_UNLOADED
+  ADD_EVENT, REMOVE_EVENT, EVENT_PAGE_LOADED, EVENT_PAGE_UNLOADED, EDIT_EVENT
 } from "../../constants/actionTypes";
 
 const mapStateToProps = state => ({
@@ -19,7 +20,9 @@ const mapDispatchToProps = dispatch => ({
     dispatch({type: ADD_EVENT, payload}),
   onRemoveEvent: payload =>
     dispatch({type: REMOVE_EVENT, payload}),
-  onUnload: () => dispatch({type: EVENT_PAGE_UNLOADED})
+  onUnload: () => dispatch({type: EVENT_PAGE_UNLOADED}),
+  onEditEvent: payload =>
+    dispatch({type: EDIT_EVENT, payload})
 });
 
 
@@ -57,27 +60,33 @@ class Timetable extends Component {
   };
 
   onEditEvent = (event) => {
-    // this.props.onEditEvent(agent.Events.edit(event));
+    this.props.onEditEvent(agent.Events.edit(event));
     this.onCloseModal();
   };
 
   onCloseModal = () => {
-    this.setState(()=>({selectedOption: false}))
+    this.setState(() => ({selectedOption: false}))
   };
 
   onDayClick = ({date}) => {
-    this.setState(()=>({
-      selectedDate: date,
+    const selectedDate = moment(date._i).format("MM/DD/YY");
+    this.setState(() => ({
+      selectedDate,
       selectedEvent: null,
       selectedOption: true
     }));
   };
 
   onEventClick = (event) => {
-    console.log(event);
-    this.setState(()=>({
-      selectedDate: event.startDate,
-      selectedEvent: event,
+
+    const start = moment(event.calEvent.start._i, "YYYY-MM-DD").format("MM/DD/YY");
+    const end = event.calEvent.end ? moment(event.calEvent.end._i, "YYYY-MM-DD").format("MM/DD/YY") : start;
+    const title = event.calEvent.title;
+    const id = event.calEvent.id;
+
+    this.setState(() => ({
+      selectedDate: start,
+      selectedEvent: {id, title, start, end},
       selectedOption: true
     }))
   };
@@ -92,14 +101,15 @@ class Timetable extends Component {
                     onDayClick={this.onDayClick}
                     onEventClick={this.onEventClick}
                     eventLimit={4}/>
-        <EventModal
-          onSubmit={this.onAddEvent}
-          selectedOption={this.state.selectedOption}
-          onCloseModal={this.onCloseModal}
-          event={this.state.selectedEvent}
-          selectedDate={this.state.selectedDate}
-          onRemoveEvent={this.onRemoveEvent}
-        />
+          <EventModal
+            onSubmit={this.onAddEvent}
+            selectedOption={this.state.selectedOption}
+            onCloseModal={this.onCloseModal}
+            event={this.state.selectedEvent}
+            selectedDate={this.state.selectedDate}
+            onRemoveEvent={this.onRemoveEvent}
+            onEditEvent={this.onEditEvent}
+          />
         </div>
       </div>
     );

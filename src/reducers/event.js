@@ -1,5 +1,5 @@
 import {
-  ADD_EVENT, REMOVE_EVENT, EVENT_PAGE_LOADED, EVENT_PAGE_UNLOADED
+  ADD_EVENT, REMOVE_EVENT, EVENT_PAGE_LOADED, EVENT_PAGE_UNLOADED, EDIT_EVENT
 } from '../constants/actionTypes';
 
 export default (state = {}, action) => {
@@ -16,6 +16,12 @@ export default (state = {}, action) => {
         events: action.error ?
           null :
           [...state.events, action.payload]
+      };
+    case EDIT_EVENT:
+      const event = action.payload;
+      return {
+        state,
+        events: [...state.events.filter(currentEvent => currentEvent.id !== event.id), event]
       };
     case REMOVE_EVENT:
       const eventId = action.payload;

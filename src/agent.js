@@ -197,12 +197,21 @@ let events = [
 
 const Events = {
   create: event => {
-    events.push(event);
-    return events[events.length - 1];
+    // events.push(event);
+    return event;
   },
   del: id => {
     events = events.filter((event) => event.id !== id);
     return id;
+  },
+  edit: ({title, id, start, end}) => {
+    console.log(events);
+    const event = events.find(currentEvent => currentEvent.id === id);
+    events = events.filter(currentEvent => currentEvent.id !== event.id);
+    event.title = title;
+    event.start = start;
+    event.end = end;
+    return event;
   },
   userEvents: user => events
 };
@@ -242,11 +251,11 @@ const Notes = {
     return notes;
   },
   create: note => {
-    notes.push(note);
-    return notes[notes.length - 1]
+    // notes.push(note);
+    return note;
   },
   del: id => {
-    notes = notes.filter(note => note.id !== id)
+    notes = notes.filter(note => note.id !== id);
     return id
   }
 };

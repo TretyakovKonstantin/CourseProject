@@ -4,18 +4,24 @@ import uuid from 'uuid';
 import {Calendar} from 'primereact/components/calendar/Calendar.js';
 
 export default class EventModal extends React.Component {
-  constructor(props) {
-    super(props);
 
-    this.state = {
-      startDate: props.event ? props.event.startDate : props.selectedDate,
-      endDate: props.event ? props.event.endDate : props.selectedDate,
-      dates: props.event ? props.event.startDate + "," + props.event.endDate : props.selectedDate,
-      title: props.event ? props.event.title : '',
-      error: '',
-      foundGroups: []
-    };
-  }
+  state = {
+    dates: ''
+  };
+
+  onAfterOpen = () => {
+    console.log(this.props.selectedDate);
+    const event = this.props.event;
+
+    this.setState({
+      event,
+      start: '',
+      dates:'',
+      title: event ? event.title : '',
+      error: ''
+    });
+
+  };
 
   onTitleInputChanged = (e) => {
     let title = e.target.value;
@@ -24,31 +30,37 @@ export default class EventModal extends React.Component {
 
   onDateInputChanged = (e) => {
     let dates = e.value;
-    let [startDate, endDate] = dates.toString().split(",");
-    this.setState({dates, startDate, endDate})
+    let [start, end] = dates.toString().split(",");
+    this.setState({dates, start, end})
   };
 
   onSaveButtonClick = () => {
+    const event = this.state.event;
+    console.log(event);
+
     let title = this.state.title;
-    let startDate = this.state.startDate;
-    let endDate = this.state.endDate;
-    let id = uuid();
+    let start = this.state.start ? this.state.start : event.start;
+    let end = this.state.end ? this.state.end : this.state.end;
+    console.log(event);
+    let id = event ? event.id : uuid();
+    console.log(event);
+
+    console.log(id);
     if (!title) {
       this.setState({error: 'Укажите, пожайлуста, название события'});
       return;
     }
-    console.log(this.state.title, this.state.startDate, this.state.endDate);
     this.props.event ?
-      this.props.onSubmit({
+      this.props.onEditEvent({
         id,
         title,
-        startDate,
-        endDate
-      }) : this.props.onEditEvent({
+        start,
+         end
+      }) : this.props.onSubmit({
         id,
         title,
-        startDate,
-        endDate
+        start,
+        end
       })
   };
 
@@ -65,6 +77,7 @@ export default class EventModal extends React.Component {
         ariaHideApp={false}
         closeTimeoutMS={200}
         className="modal"
+        onAfterOpen={this.onAfterOpen}
       >
         <div>
           <form>
@@ -76,7 +89,7 @@ export default class EventModal extends React.Component {
                   className="text-input"
                   type="text"
                   placeholder="Событие"
-                  value={this.props.title}
+                  value={this.state.title}
                   onChange={this.onTitleInputChanged}
                 />
               </fieldset>

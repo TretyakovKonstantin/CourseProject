@@ -63,7 +63,6 @@ class SettingsForm extends React.Component {
   render() {
     return (
       <div className="settings-layout">
-        {/*<div className="box-layout__box">*/}
         <form onSubmit={this.submitForm} className="input-group">
           <fieldset>
 
@@ -71,7 +70,7 @@ class SettingsForm extends React.Component {
               <input
                 className="text-input"
                 type="text"
-                placeholder="URL of profile picture"
+                placeholder="Ссылка на картинку вашего профиля"
                 value={this.state.image}
                 onChange={this.updateState('image')}/>
             </fieldset>
@@ -80,7 +79,7 @@ class SettingsForm extends React.Component {
               <input
                 className="text-input"
                 type="text"
-                placeholder="Username"
+                placeholder="Имя пользователя"
                 value={this.state.username}
                 onChange={this.updateState('username')}/>
             </fieldset>
@@ -89,7 +88,7 @@ class SettingsForm extends React.Component {
             <textarea
               className="textarea"
               rows="8"
-              placeholder="Short bio about you"
+              placeholder="Короткая биография, описывающая вас"
               value={this.state.bio}
               onChange={this.updateState('bio')}>
             </textarea>
@@ -108,7 +107,7 @@ class SettingsForm extends React.Component {
               <input
                 className="text-input"
                 type="password"
-                placeholder="New Password"
+                placeholder="Новый пароль"
                 value={this.state.password}
                 onChange={this.updateState('password')}/>
             </fieldset>
@@ -117,17 +116,16 @@ class SettingsForm extends React.Component {
               className="button"
               type="submit"
               disabled={this.state.inProgress}>
-              Update Settings
+              Обновить настройки
             </button>
 
           <button
             className="button button--link"
             onClick={this.props.onClickLogout}>
-            Or click here to logout.
+            Или выйти
           </button>
           </fieldset>
         </form>
-        {/*</div>*/}
       </div>
     );
   }
