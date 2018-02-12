@@ -2,18 +2,17 @@
   border: none;
   display: flex;
   flex-direction: column;
-  margin-bottom: $m-size;
+  margin-bottom: $l-size;
   background-color: rgba($off-white, 0.3);
-  @media (min-width: $desktop-breakpoint) {
+  @media (max-width: $tablet-breakpoint) {
     flex-direction: row;
-    margin-bottom: $l-size;
+    margin-bottom: 0;
   }
 }
 
 .input-group__item {
   border: none;
-  margin-bottom: $s-size;
-  @media (min-width: $desktop-breakpoint) {
-    margin: 0 $s-size 0 0;
+  margin: 0 $s-size 0 0;
+  @media (max-width: $desktop-breakpoint) {
   }
 }

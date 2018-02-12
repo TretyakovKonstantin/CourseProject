@@ -6,7 +6,7 @@ node_modules
 # testing
 coverage
 
-# production
+#builded project
 build
 
 # misc

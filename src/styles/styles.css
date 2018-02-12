@@ -61,22 +61,22 @@ ul {
   background: #364051;
   font-size: 1.4rem; }
 
-.header__content {
-  align-items: center;
-  display: flex;
-  justify-content: space-between;
-  padding: 0 0; }
-
 .header__title {
   color: white;
-  text-decoration: none; }
-  .header__title h3 {
-    margin: 0; }
+  text-decoration: none;
+  padding: 0.1rem; }
+
+@media (max-width: 1198px) {
+  .header button {
+    font-size: 1.54rem; } }
 
 .content-container {
   margin: 0 auto;
   padding: 0 1.6rem;
   max-width: 80rem; }
+
+@media (max-width: 1198px) {
+  padding: 0 0.2rem; }
 
 .page-header {
   background: #f7f7f7;
@@ -96,19 +96,16 @@ ul {
   border: none;
   display: flex;
   flex-direction: column;
-  margin-bottom: 1.6rem;
+  margin-bottom: 3.2rem;
   background-color: rgba(247, 247, 247, 0.3); }
-  @media (min-width: 45rem) {
+  @media (max-width: 735px) {
     .input-group {
       flex-direction: row;
-      margin-bottom: 3.2rem; } }
+      margin-bottom: 0; } }
 
 .input-group__item {
   border: none;
-  margin-bottom: 1.2rem; }
-  @media (min-width: 45rem) {
-    .input-group__item {
-      margin: 0 1.2rem 0 0; } }
+  margin: 0 1.2rem 0 0; }
 
 .text-input, .select, .textarea, .note-textarea, .note-text-input, .ui-dropdown-label, .ui-inputtext, .ui-dropdown-trigger {
   height: 50px;
@@ -136,6 +133,12 @@ ul {
 .ui-inputtext {
   border-radius: 0; }
 
+@media (max-width: 735px) {
+  .ui-dropdown {
+    width: 60vw !important; }
+  .ui-dropdown-label {
+    font-size: 1.6rem; } }
+
 .form {
   display: flex;
   flex-direction: column; }
@@ -152,7 +155,9 @@ ul {
   border-radius: 3px;
   padding: 3.2rem 1.6rem;
   text-align: center;
-  width: 30vw; }
+  width: 30vw;
+  display: flex;
+  flex-direction: column; }
 
 .box-layout__title {
   margin: 0 0 1.6rem 0;
@@ -185,12 +190,28 @@ ul {
 .form_error {
   color: red; }
 
-@media (min-width: 45rem) {
+@media (max-width: 735px) {
+  .box-layout__box {
+    width: 70vw; }
+  .box-layout__box button {
+    width: 50vw; } }
+
+@media (max-width: 1198px) {
+  .box-layout__box {
+    width: 70vw; }
+  .auth-button {
+    width: 30vw; } }
+
+@media (min-width: 1198px) {
   .show-for-mobile {
     display: none; } }
 
-@media (max-width: 44.99rem) {
+@media (max-width: 1197.99px) {
   .show-for-desktop {
+    display: none; } }
+
+@media (max-width: 734.99px) {
+  .show-for-tablet {
     display: none; } }
 
 .list-header {
@@ -203,7 +224,7 @@ ul {
 
 .list-body {
   margin-bottom: 1.6rem; }
-  @media (min-width: 45rem) {
+  @media (min-width: 1198px) {
     .list-body {
       margin-bottom: 3.2rem; } }
 
@@ -218,7 +239,7 @@ ul {
   transition: background .3s ease; }
   .list-item:hover {
     background: #f7f7f7; }
-  @media (min-width: 45rem) {
+  @media (min-width: 1198px) {
     .list-item {
       align-items: center;
       flex-direction: row;
@@ -243,7 +264,7 @@ ul {
 
 .list-item__data {
   margin: 1.2rem 0 0 0; }
-  @media (min-width: 45rem) {
+  @media (min-width: 1198px) {
     .list-item__data {
       margin: 0;
       padding-left: 1.2rem; } }
@@ -1573,12 +1594,31 @@ be a descendant of the grid when it is being dragged.
   width: 25vw;
   flex-direction: column; }
 
+.items-list li {
+  text-align: start; }
+
 .regular-page__main-content {
   align-items: center;
+  align-content: center;
   position: sticky;
   width: 70vw;
   float: right;
   right: 1.2rem; }
+
+@media (max-width: 1198px) {
+  .items-list {
+    width: 40vw; }
+  .regular-page__main-content {
+    width: 53vw; } }
+
+@media (max-width: 735px) {
+  .items-list {
+    width: 90vw;
+    float: none; }
+  .regular-page__main-content {
+    width: 90vw;
+    float: bottom;
+    right: unset; } }
 
 .news {
   background: rgba(247, 247, 247, 0.95);
@@ -1592,8 +1632,27 @@ be a descendant of the grid when it is being dragged.
   border: none; }
 
 .personal-image {
-  width: 15rem;
-  height: 15rem; }
+  width: 20rem;
+  height: 20rem; }
+
+.personal-info {
+  text-align: center;
+  width: 70vw;
+  float: right;
+  font-size: 2.24rem; }
+
+@media (max-width: 1198px) {
+  .personal-info {
+    width: 53vw;
+    font-size: 1.92rem; } }
+
+@media (max-width: 735px) {
+  .personal-image {
+    width: 20rem;
+    height: 20rem; }
+  .personal-info {
+    float: bottom;
+    width: 90vw; } }
 
 .ReactModalPortal > div {
   opacity: 0;

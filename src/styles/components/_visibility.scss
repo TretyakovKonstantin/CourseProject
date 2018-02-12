@@ -5,7 +5,13 @@
 }
 
 .show-for-desktop {
-  @media (max-width: $desktop-breakpoint - .01rem) {
+  @media (max-width: $desktop-breakpoint - .01px) {
+    display: none;
+  }
+}
+
+.show-for-tablet {
+  @media (max-width: $tablet-breakpoint - .01px) {
     display: none;
   }
 }

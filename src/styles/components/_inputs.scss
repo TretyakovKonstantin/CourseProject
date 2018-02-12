@@ -35,11 +35,22 @@
 .ui-dropdown-label {
   @extend .text-input
 }
+
 .ui-inputtext {
   @extend .text-input;
   border-radius: 0;
 }
 
 .ui-dropdown-trigger {
- @extend .text-input
+  @extend .text-input
+}
+
+
+@media (max-width: $tablet-breakpoint) {
+  .ui-dropdown {
+    width: 60vw !important;
+  }
+  .ui-dropdown-label {
+    font-size: $m-size;
+  }
 }

@@ -17,11 +17,11 @@ const LoggedInView = props => {
   if (props.currentUser) {
     return (
 
-      <header className="header">
+      <header className="header show-for-tablet">
         <div className="content-container">
-          <div className="header__content">
+          <div className="header__title">
             <Link className="header__title" to="/">
-              <h2><i className="ion-ios-home"/>&nbsp;Hogwarts</h2>
+              <button className="button button--link"><i className="ion-ios-home"/>&nbsp;Hogwarts</button>
             </Link>
             <Link className="header__title" to="/groups">
               <button className="button button--link"><i className="ion-person-stalker"/>&nbsp;Группы</button>

@@ -21,7 +21,6 @@ const EditProfileSettings = props => {
 };
 
 const mapStateToProps = state => ({
-  ...state.articleList,
   currentUser: state.common.currentUser,
   profile: state.profile
 });
@@ -52,7 +51,7 @@ class Profile extends React.Component {
       this.props.profile.username === this.props.currentUser.username;
 
     return (
-      <div className="regular-page__main-content">
+      <div className="personal-info">
         <img className="personal-image" src={profile.image} alt={profile.username}/>
         <h4>{profile.username}</h4>
         <p>{profile.bio}</p>

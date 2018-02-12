@@ -10,7 +10,6 @@ export default class EventModal extends React.Component {
   };
 
   onAfterOpen = () => {
-    console.log(this.props.selectedDate);
     const event = this.props.event;
 
     this.setState({
@@ -20,6 +19,7 @@ export default class EventModal extends React.Component {
       title: event ? event.title : '',
       error: ''
     });
+
 
   };
 

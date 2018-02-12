@@ -40,10 +40,38 @@
   flex-direction: column;
 }
 
+.items-list li {
+  text-align: start;
+}
+
 .regular-page__main-content {
   align-items: center;
+  align-content: center;
   position: sticky;
   width: 70vw;
   float: right;
   right: $s-size;
+}
+
+@media (max-width: $desktop-breakpoint){
+  .items-list {
+    width: 40vw;
+  }
+
+  .regular-page__main-content {
+    width: 53vw;
+  }
+}
+
+@media (max-width: $tablet-breakpoint){
+  .items-list {
+    width: 90vw;
+    float: none;
+  }
+
+  .regular-page__main-content {
+    width: 90vw;
+    float: bottom;
+    right: unset;
+  }
 }

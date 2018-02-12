@@ -3,3 +3,7 @@
   padding: 0 $m-size;
   max-width: 80rem;
 }
+
+@media (max-width: $desktop-breakpoint) {
+  padding: 0 0.2rem;
+}
